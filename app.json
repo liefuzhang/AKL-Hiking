@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/ranking/index",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/ranking/index"
+    "pages/enroll/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#BBDEF8",
-    "navigationBarTitleText": "羽毛球排行榜",
+    "navigationBarTitleText": "羽毛球群报名",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -21,8 +21,8 @@
         "text": "活动"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "日记"
+        "pagePath": "pages/enroll/index",
+        "text": "报名"
       }
     ]
   },

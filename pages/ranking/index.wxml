@@ -1,2 +1,10 @@
-<text>朋友圈排行榜</text>
-<text>群排行榜</text>
+<view class='header'>
+  <block>
+    <image src=''></image>
+    <text>浪子神剑</text>
+  </block>
+</view>
+
+<view>
+  <button class='btn-share'>转发到微信群，查看我的排名</button>
+</view>

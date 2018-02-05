@@ -1,1 +1,9 @@
-/* pages/ranking/index.wxss */
+.header{
+  background: green;
+  height: 300px;
+  color: #fff;
+}
+
+.btn-share{
+  width: 90%;
+}
