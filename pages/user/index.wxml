@@ -11,9 +11,11 @@
       </view>
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-          活动列表
+          我参加过的活动
         </view>
-        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">选项二的内容</view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+        我发布过的活动
+        </view>
       </view>
     </view>
   </view>
