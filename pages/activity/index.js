@@ -60,5 +60,29 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  /**
+   * 发布活动
+   */
+  publish: function () {
+    wx.showModal({
+      title: '发布成功',
+      content: "这是测试的内容",
+    })
+  },
+
+  /**
+   * 更改时间
+   */
+  startTimeChange(e) {
+    this.setData({
+      startTime: e.detail.value
+    })
+  },
+
+  inputAddress(e) {
+    this.setData({
+      address: e.detail.value
+    })
   }
 })

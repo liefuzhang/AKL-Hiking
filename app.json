@@ -1,28 +1,38 @@
 {
   "pages": [
     "pages/ranking/index",
-    "pages/index/index",
-    "pages/enroll/index"
+    "pages/activity/index",
+    "pages/user/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#BBDEF8",
-    "navigationBarTitleText": "羽毛球群报名",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#0BA8F9",
+    "navigationBarTitleText": "报名打羽毛球",
+    "navigationBarTextStyle": "#ffffff"
   },
   "tabBar": {
+    "color": "#FFFFFF",
+    "selectedColor": "#FFFF00",
+    "borderStyle": "#0BA8F9",
+    "backgroundColor": "#0BA8F9",
     "list": [
       {
         "pagePath": "pages/ranking/index",
-        "text": "排行榜"
+        "text": "排行榜",
+        "iconPath": "/assets/ico_1.png",
+        "selectedIconPath": "/assets/ico_1_1.png"
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "活动"
+        "pagePath": "pages/activity/index",
+        "text": "活动",
+        "iconPath": "/assets/ico_2.png",
+        "selectedIconPath": "/assets/ico_2_1.png"
       },
       {
-        "pagePath": "pages/enroll/index",
-        "text": "报名"
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "iconPath": "/assets/ico_3.png",
+        "selectedIconPath": "/assets/ico_3_1.png"
       }
     ]
   },

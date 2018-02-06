@@ -1,0 +1,88 @@
+<view class='page__bd'>
+  <form>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">开始时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{startDate}}" bindchange="startTimeChange">
+          <view class="weui-input">{{startDate}}</view>
+        </picker>
+      </view>
+
+      <view class="weui-cell__bd">
+        <picker mode="time" value="{{startTime}}" bindchange="startTimeChange">
+          <view class="weui-input">{{startTime}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">结束时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{endDate}}" bindchange="bindTimeChange">
+          <view class="weui-input">{{endDate}}</view>
+        </picker>
+      </view>
+
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{endTime}}" bindchange="bindTimeChange">
+          <view class="weui-input">{{endTime}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">报名截止时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="time" value="{{endTime}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+          <view class="weui-input">{{endTime}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">活动地点</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" />
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">限制人数</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input value="{{address}}" bindinput="inputAddress" placeholder="请输入人数" />
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">负责人电话</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input value="{{address}}" bindinput="inputAddress" placeholder="请输入负责人电话" />
+      </view>
+    </view>
+
+    <view class="weui-cells__title">备注</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入备注" />
+        </view>
+      </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing">
+      <button class="weui-btn" type="primary" bindtap="publish">发布活动</button>
+    </view>
+  </form>
+</view>

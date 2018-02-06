@@ -1,9 +1,0 @@
-<view>
-  <form>
-    <view>时间：</view>
-    <input placeholder='请选择活动开始的时间' />
-    <view>地点：</view>
-    <input placeholder='地点 ' />
-    <button>我要报名/取消报名</button>
-  </form>
-</view>

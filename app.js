@@ -1,7 +1,10 @@
 //app.js
 App({
   onLaunch: function (options) {
-    console.log('运行中……', options)
+    if (options.scene == 1044) {
+      console.log('场景值＝',options.shareTicket)
+    }
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

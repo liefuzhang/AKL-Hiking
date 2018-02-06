@@ -26,8 +26,57 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": 0,
+					"name": "测试转发",
+					"pathName": "pages/ranking/index",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群2",
+						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
+						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+					}
+				},
+				{
+					"id": 1,
+					"name": "我要报名页面",
+					"pathName": "pages/user/index",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群1",
+						"shareName": "yUXFjb7P4F3aYY8ETB8xxCGrWYj7UgvzrxS7gk0iAF8@cr4dev",
+						"shareKey": "LeLpVy0B2lY0CDmgB235s_SDWJuCacc_yEu10VVf9wHwQyz_I7BBuPGX_XD8HlsJRlPVa3eD1fq-Q8MvIb04xA~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "排行榜页面",
+					"pathName": "pages/ranking/index",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群2",
+						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
+						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "我的页面",
+					"pathName": "pages/user/index",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群2",
+						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
+						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+					}
+				}
+			]
 		}
 	}
 }
