@@ -69,8 +69,8 @@ Page({
       success: function (res){
         if (res.confirm){
           wx.navigateTo({
-            url: '/pages/activity/detail'
-          });
+            url: '/pages/activity/detail',
+          })
         }
       }
     })
