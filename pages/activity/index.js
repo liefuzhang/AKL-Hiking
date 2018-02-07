@@ -4,10 +4,16 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '海之林商城系统1',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    startDate: '2018-01-01',
+    startTime: '09:55',
+    endDate: '2018-01-08',
+    endTime: '11:55',
+    closeDate: '2018-01-07',
+    closeTime: '9:55',
+    address:'圳宝羽毛球馆',
+    people: 0,
+    tel:'',
+    remark: ''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -15,17 +21,8 @@ Page({
       url: '../logs/logs'
     })
   },
-  bindClick:function(){
-    console.log(111);
-    wx.showModal({
-      title:'这是弹窗测试',
-      content:"这是测试的内容",
-      cancelText: '我要取消'
-    })
-  },
 
   onLoad: function (scene) {
-
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -66,13 +63,39 @@ Page({
    */
   publish: function () {
     wx.showModal({
-      title: '发布成功',
-      content: "这是测试的内容",
+      title: '活动发布成功',
+      showCancel: false,
+      content: "活动已成功发布，您可转发到群里或者转发给好友，约他们一起打球吧！",
+      success: function (res){
+        if (res.confirm){
+          wx.navigateTo({
+            url: '/pages/activity/detail'
+          });
+        }
+      }
     })
   },
 
   /**
-   * 更改时间
+   * 更改开始日期
+   */
+  startDateChange(e) {
+    this.setData({
+      startDate: e.detail.value
+    })
+  },
+
+  /**
+  * 更改结束日期
+  */
+  endDateChange(e) {
+    this.setData({
+      endDate: e.detail.value
+    })
+  },
+
+  /**
+   * 更改开始时间
    */
   startTimeChange(e) {
     this.setData({
@@ -80,9 +103,48 @@ Page({
     })
   },
 
+  /**
+  * 更改结束时间
+  */
+  endTimeChange(e) {
+    this.setData({
+      endTime: e.detail.value
+    })
+  },
+
+  /**
+   * 更改截止时间
+   */
+  closeDateChange(e) {
+    this.setData({
+      closeDate: e.detail.value
+    })
+  },
+
+  /**
+  * 更改截止时间
+  */
+  closeTimeChange(e) {
+    this.setData({
+      closeTime: e.detail.value
+    })
+  },
+
   inputAddress(e) {
     this.setData({
       address: e.detail.value
+    })
+  },
+
+  inputPeople(e) {
+    this.setData({
+      people: e.detail.value
+    })
+  },
+
+  inputTel(e) {
+    this.setData({
+      tel: e.detail.value
     })
   }
 })

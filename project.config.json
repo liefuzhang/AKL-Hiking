@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -42,7 +42,7 @@
 				},
 				{
 					"id": 1,
-					"name": "我要报名页面",
+					"name": "我的",
 					"pathName": "pages/user/index",
 					"query": "",
 					"scene": "1044",
@@ -65,9 +65,21 @@
 					}
 				},
 				{
+					"id": 3,
+					"name": "活动",
+					"pathName": "pages/activity/index",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群2",
+						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
+						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+					}
+				},
+				{
 					"id": -1,
-					"name": "我的页面",
-					"pathName": "pages/user/index",
+					"name": "活动详情",
+					"pathName": "pages/activity/detail",
 					"query": "",
 					"scene": "1044",
 					"shareInfo": {

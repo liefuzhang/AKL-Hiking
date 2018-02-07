@@ -2,7 +2,8 @@
   "pages": [
     "pages/ranking/index",
     "pages/activity/index",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/activity/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
