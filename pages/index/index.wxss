@@ -27,3 +27,8 @@
   color:#000000;
   background-color:#F8F8F8;
 }
+
+.userinfo-avatar{
+  width: 150rpx;
+  height: 150rpx;
+}

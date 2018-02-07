@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/ranking/index",
+    "pages/index/index",
     "pages/activity/index",
     "pages/user/index",
     "pages/activity/detail"
@@ -18,7 +18,7 @@
     "backgroundColor": "#0BA8F9",
     "list": [
       {
-        "pagePath": "pages/ranking/index",
+        "pagePath": "pages/index/index",
         "text": "排行榜",
         "iconPath": "/assets/ico_1.png",
         "selectedIconPath": "/assets/ico_1_1.png"
