@@ -1,31 +1,38 @@
-// pages/activity/detail.js
+let API = require('../../utils/api.js');
+let Data = require('../../utils/data.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    startDate: '2018-01-01',
-    startTime: '09:55',
-    endDate: '2018-01-08',
-    endTime: '11:55',
-    closeDate: '2018-01-07',
-    closeTime: '9:55',
-    address: '圳宝羽毛球馆',
-    people: 15,
-    tel: '15888888888',
-    remark: '每个人要自带拍子哦！'
+    startDate: '',
+    startTime: '',
+    endDate: '',
+    endTime: '',
+    closeDate: '',
+    closeTime: '',
+    address: '',
+    people: '',
+    tel: '',
+    remark: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    console.log(111);
-    wx.showTabBar({
-      success: function(){
-        console.log(222);
-      }
+  onLoad: function (options = {}) {
+    // let dataObj = options.dataObj === undefined ? {} : JSON.parse(options.dataObj);
+    // this.setData({
+    //   people: dataObj.people,
+    //   address: dataObj.address,
+
+    // });
+    let _this = this;
+
+    API.ajax(Data.activityDetail, function(res){
+      _this.setData(res.data)
     });
   },
 

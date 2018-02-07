@@ -56,7 +56,7 @@
         <view class="weui-label">活动地点</view>
       </view>
       <view class="weui-cell__bd">
-        <view class="weui-label">{{address}}</view>
+        <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" />
       </view>
     </view>
 
@@ -65,7 +65,7 @@
         <view class="weui-label">限制人数</view>
       </view>
       <view class="weui-cell__bd">
-      <view class="weui-label">{{people}}</view>
+        <input value="{{people}}" bindinput="inputPeople" placeholder="请输入人数" />
       </view>
     </view>
 
@@ -74,19 +74,19 @@
         <view class="weui-label">负责人电话</view>
       </view>
       <view class="weui-cell__bd">
-      <view class="weui-label">{{tel}}</view>
+        <input value="{{tel}}" bindinput="inputTel" placeholder="请输入负责人电话" />
       </view>
     </view>
 
     <view class="weui-cells__title">活动说明</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 3.3em" value='{{remark}}' />
-                    <view class="weui-textarea-counter">0/200</view>
-                </view>
-            </view>
-        </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 3.3em" value='{{remark}}' />
+        <view class="weui-textarea-counter">0/200</view>
+      </view>
+    </view>
+
+
 
     <view class="page__bd page__bd_spacing">
       <button class="weui-btn" type="primary" bindtap="publish">发布活动</button>

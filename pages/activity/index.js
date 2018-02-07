@@ -62,6 +62,12 @@ Page({
    * 发布活动
    */
   publish: function () {
+    let obj = {
+      address: this.data.address,
+      people: this.data.people,
+    }
+
+    console.log(obj)
     wx.showModal({
       title: '活动发布成功',
       showCancel: false,
@@ -69,7 +75,7 @@ Page({
       success: function (res){
         if (res.confirm){
           wx.navigateTo({
-            url: '/pages/activity/detail',
+            url: '/pages/activity/detail?dataObj=' + JSON.stringify(obj)
           })
         }
       }

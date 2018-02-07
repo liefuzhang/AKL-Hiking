@@ -17,8 +17,8 @@
         我发布过的活动
         </view>
       </view>
-
-      <button open-type="contact">联系客服</button>
+      <image open-type="contact" class='kefu'></image>
+      <button open-type="contact" class='kefu'>联系客服</button>
     </view>
   </view>
 </view>

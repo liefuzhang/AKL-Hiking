@@ -1,4 +1,5 @@
-// pages/ranking/index.js
+let API = require('../../utils/api.js');
+
 Page({
 
   /**
@@ -93,5 +94,5 @@ Page({
         console.log('失败');
       }
     }
-  }
+  },
 })

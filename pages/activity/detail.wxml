@@ -1,81 +1,81 @@
 <view class='page__bd'>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">开始时间</view>
-      </view>
-      <view class="weui-cell__bd">
-        <view class="weui-input">{{startDate}} </view>
-      </view>
-
-      <view class="weui-cell__bd">
-          <view class="weui-input">{{startTime}}</view>
-      </view>
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">开始时间</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">{{startDate}} </view>
     </view>
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">结束时间</view>
-      </view>
-      <view class="weui-cell__bd">
-          <view class="weui-input">{{endDate}} </view>
-      </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">{{startTime}}</view>
+    </view>
+  </view>
 
-      <view class="weui-cell__bd">
-          <view class="weui-input">{{endTime}}</view>
-      </view>
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">结束时间</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">{{endDate}} </view>
     </view>
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">截止时间</view>
-      </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">{{endTime}}</view>
+    </view>
+  </view>
 
-      <view class="weui-cell__bd">
-          <view class="weui-input">{{closeDate}}</view>
-      </view>
-      <view class="weui-cell__bd">
-          <view class="weui-input">{{closeTime}}</view>
-      </view>
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">截止时间</view>
     </view>
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">活动地点</view>
-      </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">{{closeDate}}</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">{{closeTime}}</view>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">活动地点</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-label">{{address}}</view>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">限制人数</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-label">{{people}}</view>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">负责人电话</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-label">{{tel}}</view>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">活动说明</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
       <view class="weui-cell__bd">
-        <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" />
+        {{remark}}
       </view>
     </view>
+  </view>
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">限制人数</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input value="{{people}}" bindinput="inputPeople" placeholder="请输入人数" />
-      </view>
-    </view>
-
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">负责人电话</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input value="{{tel}}" bindinput="inputTel" placeholder="请输入负责人电话" />
-      </view>
-    </view>
-
-    <view class="weui-cells__title">活动说明</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    {{remark}}
-                </view>
-            </view>
-        </view>
-
-    <view class="page__bd page__bd_spacing">
-      <button class="weui-btn" type="primary" bindtap="publish">我要报名/截止报名/活动已结束</button>
-      <button class="weui-btn" type="primary" bindtap="publish">取消/修改</button>
-    </view>
+  <view class="page__bd page__bd_spacing">
+    <button class="weui-btn" type="primary" bindtap="publish">我要报名/截止报名/活动已结束</button>
+    <button class="weui-btn" type="primary" bindtap="publish">取消/修改</button>
+  </view>
 </view>
