@@ -1,6 +1,20 @@
 <view class='page__bd'>
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
+      <view class="weui-label">报名人数({{peoples.length}}/12)</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">
+        <block wx:for="{{peoples}}" wx:key="unique">
+          <image src='{{item.pic}}'></image>
+          <text class="log-item">{{item.name}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
       <view class="weui-label">开始时间</view>
     </view>
     <view class="weui-cell__bd">

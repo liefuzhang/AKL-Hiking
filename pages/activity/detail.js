@@ -32,6 +32,7 @@ Page({
     let _this = this;
 
     API.ajax(Data.activityDetail, function(res){
+      console.log(res);
       _this.setData(res.data)
     });
   },

@@ -16,6 +16,12 @@ module.exports = {
       'people|1-100': 1,
       'tel': /^1[385][1-9]\d{8}/,
       'remark': '@ctitle(10,100)',
+      'peoples|2-12':[
+        {
+          'pic': "@image('50x50', '#4A7BF7','#fff','pic')",
+          'name':"@ctitle(2,8)"
+        }
+      ]
     }
   }
 }
