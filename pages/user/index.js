@@ -8,9 +8,88 @@ Page({
    */
   data: {
     tabs: ["我参加的活动", "我发布的活动"],
-    activeIndex: 1,
+    activeIndex: 0,
     sliderOffset: 0,
-    sliderLeft: 0
+    sliderLeft: 0,
+    activeLists: [{
+        year: '2018',
+        month: '01－05',
+        week: 1,
+        title: '放飞心情',
+        address: '圳宝羽毛球馆1',
+        people: 10, 
+        startDate: '',
+        startTime: '',
+        addTime: ''
+      },
+      {
+        year: '2018',
+        month: '08－05',
+        week: 1,
+        title: '放飞心情',
+        address: '圳宝羽毛球馆2',
+        people: 10,
+        startDate: '',
+        startTime: '',
+        addTime: ''
+      },
+      {
+        year: '2017',
+        month: '03－05',
+        week: 1,
+        title: '放飞心情',
+        address: '圳宝羽毛球馆3',
+        people: 10,
+        startDate: '',
+        startTime: '',
+        addTime: ''
+      },
+      {
+        year: '2017',
+        month: '02－05',
+        week: 1,
+        title: '放飞心情',
+        address: '圳宝羽毛球馆4',
+        people: 10,
+        startDate: '',
+        startTime: '',
+        addTime: ''
+      }
+    ],
+    myAactiveLists: [{
+      year: '2018',
+      month: '01－05',
+      week: 1,
+      title: '放飞心情',
+      address: '圳宝羽毛球馆1',
+      people: 10,
+      startDate: '',
+      startTime: '',
+      addTime: ''
+    },
+    {
+      year: '2018',
+      month: '08－05',
+      week: 1,
+      title: '放飞心情',
+      address: '圳宝羽毛球馆2',
+      people: 10,
+      startDate: '',
+      startTime: '',
+      addTime: ''
+    },
+    {
+      year: '2017',
+      month: '03－05',
+      week: 1,
+      title: '放飞心情',
+      address: '圳宝羽毛球馆3',
+      people: 10,
+      startDate: '',
+      startTime: '',
+      addTime: ''
+    }
+    ]
   },
 
   /**

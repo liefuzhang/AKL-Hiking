@@ -1,4 +1,6 @@
 //app.js
+const CONFIG = require('config.js');
+
 App({
   onLaunch: function (options) {
     if (options.scene == 1044) {
@@ -13,8 +15,27 @@ App({
     // 登录
     wx.login({
       success: res => {
-        console.log(res);
+        console.log('登录成功后：',res);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log({
+          appid: this.globalData.appid,
+          secret: this.globalData.secret,
+          js_code: res.code,
+          grant_type: 'authorization_code'
+        })
+        wx.request({
+          url: `${this.globalData.apiUrl}?mod=api&ctr=weixin&act=login`,
+          data: {
+            appid: this.globalData.appid,
+            secret:this.globalData.secret,
+            js_code: res.code,
+            grant_type:'authorization_code'
+          },
+          method: 'POST',
+          success(result){
+            console.log('登录成功信息：', result)
+          }
+        });
       }
     })
     // 获取用户信息
@@ -42,6 +63,9 @@ App({
     console.log('hide...', )
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    apiUrl: CONFIG.apiUrl,
+    appid: CONFIG.appid,
+    secret: CONFIG.secret,
   }
 })

@@ -11,10 +11,38 @@
       </view>
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-          我参加过的活动
+            
+            <view class='artivity-list'>
+              <block wx:for="{{activeLists}}" wx:key="index">
+                <view class='date'>
+                  <text>{{item.year}}年</text>
+                </view>
+
+                <view class='time'>
+                  {{item.month}}（星期三）,20:00 - 22:00
+                </view>
+                <view class='item-list'>
+                  {{item.title}},{{item.address}},{{item.people}}人， 查看更多
+                </view>
+              </block>
+            </view>
+
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-        我发布过的活动
+          <view class='artivity-list'>
+              <block wx:for="{{myAactiveLists}}" wx:key="index">
+                <view class='date'>
+                  <text>{{item.year}}年</text>
+                </view>
+
+                <view class='time'>
+                  {{item.month}}（星期三）,20:00 - 22:00
+                </view>
+                <view class='item-list'>
+                  {{item.title}},{{item.address}},{{item.people}}人， 查看更多
+                </view>
+              </block>
+            </view>
         </view>
       </view>
       <image open-type="contact" class='kefu'></image>

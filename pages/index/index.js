@@ -17,6 +17,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('进来的值：', options);
+    wx.showShareMenu({
+      withShareTicket: true
+    });
+
+    
+    
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -104,10 +111,14 @@ Page({
       success: function (res) {
         // 转发成功
         console.log('成功', res);
-        wx.showShareMenu({
-          // 要求小程序返回分享目标信息
-          withShareTicket: true
-        });
+        // 获取分享到的信息
+        wx.getShareInfo({
+          shareTicket: res.shareTickets[0],
+          success: function(result){
+            console.log(result)
+          }
+        })
+        
       },
       fail: function (res) {
         // 转发失败
