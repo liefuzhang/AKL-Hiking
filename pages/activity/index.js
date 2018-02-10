@@ -3,14 +3,15 @@ const app = getApp()
 
 Page({
   data: {
+    subject:'',
     startDate: '2018-01-01',
     startTime: '09:55',
     endDate: '2018-01-08',
     endTime: '11:55',
     closeDate: '2018-01-07',
     closeTime: '9:55',
-    address:'圳宝羽毛球馆',
-    people: 0,
+    address:'',
+    people: '',
     tel:'',
     remark: ''
   },
@@ -62,23 +63,37 @@ Page({
    */
   publish: function () {
     let obj = {
+      subject: this.data.subject,
+      startDate: this.data.startDate,
+      startTime: this.data.startTime,
+      endDate: this.data.endDate,
+      endTime: this.data.endTime,
+      closeDate: this.data.closeDate,
+      closeTime: this.data.closeTime,
       address: this.data.address,
       people: this.data.people,
+      tel: this.data.tel,
+      remark: this.data.remark
     }
 
-    console.log(obj)
-    wx.showModal({
-      title: '活动发布成功',
-      showCancel: false,
-      content: "活动已成功发布，您可转发到群里或者转发给好友，约他们一起打球吧！",
-      success: function (res){
-        if (res.confirm){
-          wx.navigateTo({
-            url: '/pages/activity/detail?dataObj=' + JSON.stringify(obj)
-          })
-        }
+    wx.setStorage({
+      key:'enrollInfo',
+      data: obj, 
+      success:function(){
+        wx.showModal({
+          title: '活动发布成功',
+          showCancel: false,
+          content: "活动已成功发布，您可转发到群里，约他们一起打球吧！",
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/activity/detail'
+              })
+            }
+          }
+        })
       }
-    })
+    });
   },
 
   /**
@@ -135,6 +150,12 @@ Page({
     })
   },
 
+  inputSubject(e) {
+    this.setData({
+      subject: e.detail.value
+    })
+  },
+
   inputAddress(e) {
     this.setData({
       address: e.detail.value
@@ -150,6 +171,12 @@ Page({
   inputTel(e) {
     this.setData({
       tel: e.detail.value
+    })
+  },
+
+  inputRemark(e) {
+    this.setData({
+      remark: e.detail.value
     })
   }
 })

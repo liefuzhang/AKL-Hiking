@@ -22,8 +22,6 @@ Page({
       withShareTicket: true
     });
 
-    
-    
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -50,7 +48,6 @@ Page({
         }
       })
     }
-
   },
 
   /**

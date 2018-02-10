@@ -2,6 +2,18 @@
   <form>
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
+        <view class="weui-label">活动主题</view>
+      </view>
+
+      <view class="weui-cell__bd">
+        <view class="weui-input">
+          <input value="{{subject}}" bindinput="inputSubject" placeholder="请输入活动主题" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
         <view class="weui-label">开始时间</view>
       </view>
       <view class="weui-cell__bd">
@@ -56,7 +68,9 @@
         <view class="weui-label">活动地点</view>
       </view>
       <view class="weui-cell__bd">
-        <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" />
+        <view class="weui-input">
+          <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" />
+        </view>
       </view>
     </view>
 
@@ -65,7 +79,9 @@
         <view class="weui-label">限制人数</view>
       </view>
       <view class="weui-cell__bd">
-        <input value="{{people}}" bindinput="inputPeople" placeholder="请输入人数" />
+        <view class="weui-input">
+          <input value="{{people}}" bindinput="inputPeople" placeholder="请输入活动的人数" />
+        </view>
       </view>
     </view>
 
@@ -74,14 +90,16 @@
         <view class="weui-label">负责人电话</view>
       </view>
       <view class="weui-cell__bd">
-        <input value="{{tel}}" bindinput="inputTel" placeholder="请输入负责人电话" />
+        <view class="weui-input">
+          <input value="{{tel}}" bindinput="inputTel" placeholder="请输入负责人电话" />
+        </view>
       </view>
     </view>
 
     <view class="weui-cells__title">活动说明</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
-        <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 3.3em" value='{{remark}}' />
+        <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 3.3em" value='{{remark}}' bindinput="inputRemark" />
         <view class="weui-textarea-counter">0/200</view>
       </view>
     </view>

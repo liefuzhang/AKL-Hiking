@@ -1,6 +1,17 @@
 <view class='page__bd'>
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
+      <view class="weui-label">主题</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="weui-input">
+        <text class="log-item">{{subject}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
       <view class="weui-label">报名人数({{peoples.length}}/12)</view>
     </view>
     <view class="weui-cell__bd">
@@ -57,7 +68,7 @@
       <view class="weui-label">活动地点</view>
     </view>
     <view class="weui-cell__bd">
-      <view class="weui-label">{{address}}</view>
+      <view class="weui-input">{{address}}</view>
     </view>
   </view>
 
@@ -66,7 +77,7 @@
       <view class="weui-label">限制人数</view>
     </view>
     <view class="weui-cell__bd">
-      <view class="weui-label">{{people}}</view>
+      <view class="weui-input">{{people}}</view>
     </view>
   </view>
 
@@ -75,7 +86,7 @@
       <view class="weui-label">负责人电话</view>
     </view>
     <view class="weui-cell__bd">
-      <view class="weui-label">{{tel}}</view>
+      <view class="weui-input">{{tel}}</view>
     </view>
   </view>
 

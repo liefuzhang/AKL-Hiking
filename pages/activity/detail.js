@@ -1,5 +1,5 @@
-let API = require('../../utils/api.js');
-let Data = require('../../utils/data.js');
+// let API = require('../../utils/api.js');
+// let Data = require('../../utils/data.js');
 
 Page({
 
@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    subject: '',
     startDate: '',
     startTime: '',
     endDate: '',
@@ -31,10 +32,12 @@ Page({
     // });
     let _this = this;
 
-    API.ajax(Data.activityDetail, function(res){
-      console.log(res);
-      _this.setData(res.data)
-    });
+   wx.getStorage({
+      key: 'enrollInfo',
+      success: function(res) {
+        _this.setData(res.data);
+      }
+    })
   },
 
   /**
