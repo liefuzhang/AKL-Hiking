@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -65,15 +65,15 @@
 					}
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "活动详情",
 					"pathName": "pages/activity/detail",
-					"query": "",
+					"query": "id=5a805a90c4096607c67b2e85",
 					"scene": "1044",
 					"shareInfo": {
-						"groupName": "测试模拟群2",
-						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
-						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+						"groupName": "测试模拟群4",
+						"shareName": "yUXFjb7P4F3aYY8ETB8xxHhWskltCjkWTcFDJjBBdrY@cr4dev",
+						"shareKey": "xky8fCBB-jwZouktVEGaeSGsv_6zowjHk81JcGJljIBsfSQSSY12CuD9BZoIczXdQ-smHKMwnBJCTJO9d5zOcw~~"
 					}
 				},
 				{

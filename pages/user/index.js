@@ -1,6 +1,9 @@
 var utils = require('../../utils/util.js');
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
@@ -11,98 +14,95 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    activeLists: [{
-        year: '2018',
-        month: '01－05',
-        week: 1,
-        title: '放飞心情',
-        address: '圳宝羽毛球馆1',
-        people: 10, 
-        startDate: '',
-        startTime: '',
-        addTime: ''
-      },
-      {
-        year: '2018',
-        month: '08－05',
-        week: 1,
-        title: '放飞心情',
-        address: '圳宝羽毛球馆2',
-        people: 10,
-        startDate: '',
-        startTime: '',
-        addTime: ''
-      },
-      {
-        year: '2017',
-        month: '03－05',
-        week: 1,
-        title: '放飞心情',
-        address: '圳宝羽毛球馆3',
-        people: 10,
-        startDate: '',
-        startTime: '',
-        addTime: ''
-      },
-      {
-        year: '2017',
-        month: '02－05',
-        week: 1,
-        title: '放飞心情',
-        address: '圳宝羽毛球馆4',
-        people: 10,
-        startDate: '',
-        startTime: '',
-        addTime: ''
-      }
-    ],
-    myAactiveLists: [{
-      year: '2018',
-      month: '01－05',
-      week: 1,
-      title: '放飞心情',
-      address: '圳宝羽毛球馆1',
-      people: 10,
-      startDate: '',
-      startTime: '',
-      addTime: ''
+    activeLists: {
+      '2018': [
+        {
+          year: '2018',
+          month: '01－05',
+          week: 1,
+          title: '放飞心情',
+          address: '圳宝羽毛球馆1',
+          people: 10,
+          startDate: '',
+          startTime: '',
+          addTime: ''
+        },
+        {
+          year: '2018',
+          month: '02－05',
+          week: 1,
+          title: '放飞心情',
+          address: '圳宝羽毛球馆2',
+          people: 10,
+          startDate: '',
+          startTime: '',
+          addTime: ''
+        },
+        {
+          year: '2017',
+          month: '03－05',
+          week: 1,
+          title: '放飞心情',
+          address: '圳宝羽毛球馆3',
+          people: 10,
+          startDate: '',
+          startTime: '',
+          addTime: ''
+        },
+        {
+          year: '2017',
+          month: '05－05',
+          week: 1,
+          title: '放飞心情',
+          address: '圳宝羽毛球馆4',
+          people: 10,
+          startDate: '',
+          startTime: '',
+          addTime: ''
+        }
+      ],
+      '2017': [
+        {
+          year: '2017',
+          month: '01－05',
+          week: 1,
+          title: '放飞心情',
+          address: '圳宝羽毛球馆1',
+          people: 10,
+          startDate: '',
+          startTime: '',
+          addTime: ''
+        }
+      ]
     },
-    {
-      year: '2018',
-      month: '08－05',
-      week: 1,
-      title: '放飞心情',
-      address: '圳宝羽毛球馆2',
-      people: 10,
-      startDate: '',
-      startTime: '',
-      addTime: ''
-    },
-    {
-      year: '2017',
-      month: '03－05',
-      week: 1,
-      title: '放飞心情',
-      address: '圳宝羽毛球馆3',
-      people: 10,
-      startDate: '',
-      startTime: '',
-      addTime: ''
-    }
-    ]
+    myAactiveLists: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    let openid = wx.getStorageSync('userInfo').openid;
+    let that = this;
+
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
         });
+      }
+    });
+
+    // 获取发布的数据
+    wx.request({
+      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityList&openid=${openid}`,
+      method: 'GET',
+      success(result) {
+        that.setData({
+          'myAactiveLists': result.data
+        });
+        console.log(result.data);
       }
     });
   },
@@ -154,5 +154,6 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
-  }
+  },
+
 })

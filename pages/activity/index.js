@@ -1,22 +1,24 @@
+let util = require('../../utils/util.js');
+
 //获取应用实例
 const app = getApp()
 
 Page({
   data: {
-    subject:'',
-    startDate: '2018-01-01',
-    startTime: '09:55',
-    endDate: '2018-01-08',
-    endTime: '11:55',
-    closeDate: '2018-01-07',
-    closeTime: '9:55',
-    address:'',
+    subject: '',
+    startDate: util.formatTime(new Date, 1),
+    startTime: util.formatTime(new Date, 2),
+    endDate: util.formatTime(new Date, 1),
+    endTime: util.formatTime(new Date, 2),
+    closeDate: util.formatTime(new Date, 1),
+    closeTime: util.formatTime(new Date, 2),
+    address: '',
     people: '',
-    tel:'',
+    tel: '',
     remark: ''
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -28,7 +30,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -50,7 +52,7 @@ Page({
       })
     }
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -62,7 +64,10 @@ Page({
    * 发布活动
    */
   publish: function () {
+    let openid = wx.getStorageSync('userInfo').openid;
+
     let obj = {
+      openid: openid,
       subject: this.data.subject,
       startDate: this.data.startDate,
       startTime: this.data.startTime,
@@ -76,24 +81,32 @@ Page({
       remark: this.data.remark
     }
 
-    wx.setStorage({
-      key:'enrollInfo',
-      data: obj, 
-      success:function(){
-        wx.showModal({
-          title: '活动发布成功',
-          showCancel: false,
-          content: "活动已成功发布，您可转发到群里，约他们一起打球吧！",
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '/pages/activity/detail'
-              })
-            }
+    // wx.setStorage({
+    //   key: 'enrollInfo',
+    //   data: obj,
+    //   success: function () {
+        wx.request({
+          url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityAdd`,
+          data: obj,
+          method: 'POST',
+          success(result) {
+            console.log(result);
+            wx.showModal({
+              title: '活动发布成功',
+              showCancel: false,
+              content: "活动已成功发布，您可转发到群里，约他们一起打球吧！",
+              success: function (res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: '/pages/activity/detail?id=' + result.data._id
+                  })
+                }
+              }
+            })
           }
-        })
-      }
-    });
+        });
+    //   }
+    // });
   },
 
   /**

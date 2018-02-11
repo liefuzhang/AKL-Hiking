@@ -15,15 +15,17 @@
             <view class='artivity-list'>
               <block wx:for="{{activeLists}}" wx:key="index">
                 <view class='date'>
-                  <text>{{item.year}}年</text>
+                  <text>{{index}}年</text>
                 </view>
 
-                <view class='time'>
-                  {{item.month}}（星期三）,20:00 - 22:00
-                </view>
-                <view class='item-list'>
-                  {{item.title}},{{item.address}},{{item.people}}人， 查看更多
-                </view>
+                <block wx:for="{{activeLists[index]}}" wx:key="key" wx:for-item="v">
+                  <view class='time'>
+                    {{v.month}}（星期三）,{{v.startTime}} - {{v.endTime}}
+                  </view>
+                  <view class='item-list'>
+                    {{v.title}},{{v.address}},{{v.people}}人， <navigator url="/pages/activity/detail?id={{v._id}}" hover-class="navigator-hover">查看更多</navigator>
+                  </view>
+                </block>
               </block>
             </view>
 
@@ -36,10 +38,10 @@
                 </view>
 
                 <view class='time'>
-                  {{item.month}}（星期三）,20:00 - 22:00
+                  {{item.month}}（星期三）,{{item.startTime}} - {{item.endTime}}
                 </view>
                 <view class='item-list'>
-                  {{item.title}},{{item.address}},{{item.people}}人， 查看更多
+                  {{item.title}},{{item.address}},{{item.people}}人， <navigator url="/pages/activity/detail?id={{item._id}}" hover-class="navigator-hover">查看更多</navigator>
                 </view>
               </block>
             </view>

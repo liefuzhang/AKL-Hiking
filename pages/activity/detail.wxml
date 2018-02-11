@@ -98,9 +98,16 @@
       </view>
     </view>
   </view>
+</view>
 
-  <view class="page__bd page__bd_spacing">
-    <button class="weui-btn" type="primary" bindtap="publish">我要报名/截止报名/活动已结束</button>
-    <button class="weui-btn" type="primary" bindtap="publish">取消/修改</button>
-  </view>
+<view class="">
+    <navigator url="./index?id=111" hover-class="navigator-hover" open-type="navigate">修改活动</navigator>  ｜
+    <text>取消活动</text>
+    <button class="weui-btn btn-enroll" type="primary" bindtap='onEnroll'>我要报名</button>
+    <button class="weui-btn btn-share" type="primary" bindtap="publish" open-type="share">分享活动</button>
+    <!-- <button class="weui-btn" type="warn" bindtap="publish">截止报名</button> -->
+    <!-- <button class="weui-btn" type="warn" bindtap="publish">取消报名</button> -->
+    <!-- <button class="weui-btn" type="warn" bindtap="publish">活动已结束</button> -->
+    <!-- <button class="weui-btn" type="warn" bindtap="publish">人数已满</button> -->
+    <!-- <button class="weui-btn" type="default" bindtap="publish">取消/修改</button> -->
 </view>

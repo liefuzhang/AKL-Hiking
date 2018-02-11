@@ -1,1 +1,14 @@
-/* pages/activity/detail.wxss */
+.weui-btn{
+  position: fixed;
+  bottom: 0;
+  width: 50%;
+  border-radius: 0;
+  border: none;
+}
+.btn-enroll{
+  left:0;
+}
+.btn-share{
+  right:0;
+  background: yellow;
+}
