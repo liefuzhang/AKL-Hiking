@@ -1,20 +1,29 @@
  .kefu{
   background-image: url(../../../assets/ico_kefu.png) no-repeat;
-  width: 100px;
-  height: 99px;
+  width: 300rpx;
+  height: 99rpx;
 } 
 
 .artivity-list{
-  padding: 10px;
-}
-
-.artivity-list .date{
-  color:red;
+  padding: 10rpx;
 }
 
 .artivity-list .item-list{
-  padding-left: 15px;
-  padding-bottom: 10px;
+  padding-bottom: 10rpx;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
+  margin-bottom: 10rpx;
+}
+
+.artivity-list .item-list .more{
+  display: inline-block;
+  color: red;    
+}
+
+.no-activity{
+  margin-top: 250rpx;
+  text-align: center;
+}
+
+.publish{
+  margin-top: 50px;
 }

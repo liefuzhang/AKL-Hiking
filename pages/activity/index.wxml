@@ -7,7 +7,7 @@
 
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{subject}}" bindinput="inputSubject" placeholder="请输入活动主题" />
+          <input value="{{subject}}" bindinput="inputSubject" placeholder="请输入活动主题" class='weui-input' />
         </view>
       </view>
     </view>
@@ -69,7 +69,7 @@
       </view>
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" />
+          <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" class='weui-input' />
         </view>
       </view>
     </view>
@@ -80,7 +80,7 @@
       </view>
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{people}}" bindinput="inputPeople" placeholder="请输入活动的人数" />
+          <input value="{{people}}" bindinput="inputPeople" placeholder="请输入活动的人数" class='weui-input' type='number'  pattern="\d*" />
         </view>
       </view>
     </view>
@@ -91,11 +91,11 @@
       </view>
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{tel}}" bindinput="inputTel" placeholder="请输入负责人电话" />
+          <input value="{{tel}}" bindinput="inputTel" placeholder="请输入负责人电话" class='weui-input' />
         </view>
       </view>
     </view>
-
+    
     <view class="weui-cells__title">活动说明</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
@@ -104,10 +104,9 @@
       </view>
     </view>
 
-
-
     <view class="page__bd page__bd_spacing">
-      <button class="weui-btn" type="primary" bindtap="publish">发布活动</button>
+      <button class="weui-btn publish" type="primary" bindtap="publish" wx:if="{{id !== ''}}">修改活动</button>
+      <button class="weui-btn publish" type="primary" bindtap="publish" wx:else>发布活动</button>
     </view>
   </form>
 </view>

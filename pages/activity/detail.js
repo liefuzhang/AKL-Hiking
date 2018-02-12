@@ -125,7 +125,7 @@ Page({
       method: 'GET',
       success(result) {
         if(result.code){
-          
+
         }
 
         wx.showModal({
@@ -141,6 +141,15 @@ Page({
           }
         })
       }
+    });
+  },
+
+  // 修改活动
+  onEditActivity: function(){
+    app.globalData.activityId = this.data._id;
+
+    wx.switchTab({
+      url: '/pages/activity/index'
     });
   }
 })

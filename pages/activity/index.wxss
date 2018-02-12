@@ -23,3 +23,7 @@
 .button{
   color: red;
 }
+
+.page__bd_spacing{
+  margin-top: 30px;
+}

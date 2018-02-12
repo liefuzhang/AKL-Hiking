@@ -14,67 +14,7 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    activeLists: {
-      '2018': [
-        {
-          year: '2018',
-          month: '01－05',
-          week: 1,
-          title: '放飞心情',
-          address: '圳宝羽毛球馆1',
-          people: 10,
-          startDate: '',
-          startTime: '',
-          addTime: ''
-        },
-        {
-          year: '2018',
-          month: '02－05',
-          week: 1,
-          title: '放飞心情',
-          address: '圳宝羽毛球馆2',
-          people: 10,
-          startDate: '',
-          startTime: '',
-          addTime: ''
-        },
-        {
-          year: '2017',
-          month: '03－05',
-          week: 1,
-          title: '放飞心情',
-          address: '圳宝羽毛球馆3',
-          people: 10,
-          startDate: '',
-          startTime: '',
-          addTime: ''
-        },
-        {
-          year: '2017',
-          month: '05－05',
-          week: 1,
-          title: '放飞心情',
-          address: '圳宝羽毛球馆4',
-          people: 10,
-          startDate: '',
-          startTime: '',
-          addTime: ''
-        }
-      ],
-      '2017': [
-        {
-          year: '2017',
-          month: '01－05',
-          week: 1,
-          title: '放飞心情',
-          address: '圳宝羽毛球馆1',
-          people: 10,
-          startDate: '',
-          startTime: '',
-          addTime: ''
-        }
-      ]
-    },
+    activeLists: [],
     myAactiveLists: []
   },
 
@@ -91,6 +31,18 @@ Page({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
         });
+      }
+    });
+
+    // 获取参加的活动数据
+    wx.request({
+      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=enrollList&openid=${openid}`,
+      method: 'GET',
+      success(result) {
+        that.setData({
+          'activeLists': result.data
+        });
+        console.log(result.data);
       }
     });
 
@@ -155,5 +107,11 @@ Page({
       activeIndex: e.currentTarget.id
     });
   },
+
+  publish: function(){
+    wx.switchTab({
+      url: '/pages/activity/index'
+    });
+  }
 
 })

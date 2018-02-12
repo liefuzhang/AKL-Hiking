@@ -101,7 +101,7 @@
 </view>
 
 <view class="">
-    <navigator url="./index?id=111" hover-class="navigator-hover" open-type="navigate">修改活动</navigator>  ｜
+    <view bindtap='onEditActivity'>修改活动</view>  ｜
     <text>取消活动</text>
     <button class="weui-btn btn-enroll" type="primary" bindtap='onEnroll'>我要报名</button>
     <button class="weui-btn btn-share" type="primary" bindtap="publish" open-type="share">分享活动</button>

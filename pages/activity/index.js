@@ -5,6 +5,7 @@ const app = getApp()
 
 Page({
   data: {
+    id: '',
     subject: '',
     startDate: util.formatTime(new Date, 1),
     startTime: util.formatTime(new Date, 2),
@@ -25,6 +26,23 @@ Page({
   },
 
   onLoad: function (scene) {
+    let id = app.globalData.activityId;
+    this.setData({
+      id: id
+    });
+    let _this = this;
+
+    if (id !== '') {
+      wx.request({
+        url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityInfo&id=${id}`,
+        method: 'GET',
+        success(result) {
+          _this.setData(result.data);
+          console.log(result);
+        }
+      });
+    }
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -60,11 +78,14 @@ Page({
       hasUserInfo: true
     })
   },
+
   /**
    * 发布活动
    */
   publish: function () {
     let openid = wx.getStorageSync('userInfo').openid;
+    let id = this.data.id;
+    let modelTitle = '活动发布成功';
 
     let obj = {
       openid: openid,
@@ -81,32 +102,31 @@ Page({
       remark: this.data.remark
     }
 
-    // wx.setStorage({
-    //   key: 'enrollInfo',
-    //   data: obj,
-    //   success: function () {
-        wx.request({
-          url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityAdd`,
-          data: obj,
-          method: 'POST',
-          success(result) {
-            console.log(result);
-            wx.showModal({
-              title: '活动发布成功',
-              showCancel: false,
-              content: "活动已成功发布，您可转发到群里，约他们一起打球吧！",
-              success: function (res) {
-                if (res.confirm) {
-                  wx.navigateTo({
-                    url: '/pages/activity/detail?id=' + result.data._id
-                  })
-                }
-              }
-            })
+    wx.request({
+      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityAdd&id=${id}`,
+      data: obj,
+      method: 'POST',
+      success(result) {
+        app.globalData.activityId = '';
+        if(id !== ''){
+          modelTitle = '活动修改成功';
+        }
+
+        wx.showModal({
+          title: modelTitle,
+          showCancel: false,
+          content: "活动已成功发布，您可转发到群里，约他们一起打球吧！",
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/activity/detail?id=' + ((id !== '') ? id : result.data._id)
+              })
+            }
           }
-        });
-    //   }
-    // });
+        })
+      }
+    });
+
   },
 
   /**

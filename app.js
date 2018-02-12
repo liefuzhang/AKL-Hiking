@@ -55,6 +55,7 @@ App({
     apiUrl: CONFIG.apiUrl,
     appid: CONFIG.appid,
     secret: CONFIG.secret,
+    activityId:''
   },
   // 获取用户授权
   getUserInfo: function(){
