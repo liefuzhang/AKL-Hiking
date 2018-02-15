@@ -3,14 +3,14 @@
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view class="userinfo-nickname">{{userInfo.nickName}}</view>
     </block>
   </view>
 </view>
 
-<view>
-  <block>
-    <text wx:if="{{actityNum <= 0}}">~~您还没有参加活动!</text>
+<view class='activity-list'>
+  <block wx:if="{{actityNum <= 0}}">
+    <text>~~您还没有参加活动!</text>
   </block>
 
   <navigator url='/pages/activity/index' class='publish' wx:if="{{actityNum <= 0}}" open-type="switchTab">我要发布活动</navigator>

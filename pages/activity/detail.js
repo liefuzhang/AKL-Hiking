@@ -31,6 +31,10 @@ Page({
     let id = options.id || '';
     let _this = this;
 
+    wx.showShareMenu({
+      withShareTicket: true
+    });
+
     wx.request({
       url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityInfo&id=${id}`,
       method: 'GET',
@@ -93,9 +97,9 @@ Page({
     // }
     return {
       // 我报名今晚的羽毛球活动，就差你了！
-      title: '浪子神剑 邀请你来打羽毛球(2月2日,星期一,晚上20：00-22：00),目前已报3人，活动火热报名中……',
-      path: '/pages/activity/detail?id=' + this._id,
-      imageUrl: '/assets/baoming.jpg',
+      title: `@所有人 “浪子神剑“ 邀请你来打羽毛球(${this.data.subject}, ${this.data.startDate} ${this.data.startTime}),目前已报3人，活动火热报名中……`,
+      path: '/pages/activity/detail?id=' + this.data._id,
+      // imageUrl: '/assets/baoming.jpg',
       success: function (res) {
         // 转发成功
         console.log('成功', res);
@@ -131,7 +135,7 @@ Page({
         wx.showModal({
           title: '报名成功！',
           showCancel: false,
-          content: "报名成功了，还不分享到群里邀请更多小伙伴来参与！",
+          content: "报名成功了，分享到群里让更多小伙伴来参与吧！",
           success: function (res) {
             if (res.confirm) {
               wx.navigateTo({

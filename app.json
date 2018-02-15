@@ -8,7 +8,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0BA8F9",
-    "navigationBarTitleText": "羽毛球报名",
+    "navigationBarTitleText": "羽毛球活动报名",
     "navigationBarTextStyle": "#ffffff"
   },
   "tabBar": {
@@ -25,7 +25,7 @@
       },
       {
         "pagePath": "pages/activity/index",
-        "text": "活动",
+        "text": "发布活动",
         "iconPath": "/assets/ico_2.png",
         "selectedIconPath": "/assets/ico_2_1.png"
       },

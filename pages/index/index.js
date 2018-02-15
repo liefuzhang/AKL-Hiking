@@ -102,7 +102,7 @@ Page({
     // }
     return {
       // 我报名今晚的羽毛球活动，就差你了！
-      title: '浪子神剑 邀请你来打羽毛球(2月2日,星期一,晚上20：00-22：00),目前已报3人，活动火热报名中……',
+      title: '浪子神剑 邀请你来打羽毛球(2月2日,晚上20：00-22：00),目前已报3人，活动火热报名中……',
       path: '/pages/ranking/index?id=123',
       imageUrl: '/assets/baoming.jpg',
       success: function (res) {

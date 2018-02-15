@@ -12,3 +12,6 @@
   right:0;
   background: yellow;
 }
+.enroll-people{
+  color: red;
+}

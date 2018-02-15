@@ -1,8 +1,5 @@
 <view class='page__bd'>
   <view class="weui-cell weui-cell_input">
-    <view class="weui-cell__hd">
-      <view class="weui-label">主题</view>
-    </view>
     <view class="weui-cell__bd">
       <view class="weui-input">
         <text class="log-item">{{subject}}</text>
@@ -12,7 +9,7 @@
 
   <view class="weui-cell weui-cell_input">
     <view class="weui-cell__hd">
-      <view class="weui-label">报名人数({{peoples.length}}/12)</view>
+      <view class="weui-label">已报名<text class='enroll-people'>3</text>人</view>
     </view>
     <view class="weui-cell__bd">
       <view class="weui-input">
@@ -101,10 +98,12 @@
 </view>
 
 <view class="">
+    <open-data type="groupName" open-gid="GXJB_4reOCnOTLGn0lVne-kTZX5Q"></open-data>
     <view bindtap='onEditActivity'>修改活动</view>  ｜
     <text>取消活动</text>
     <button class="weui-btn btn-enroll" type="primary" bindtap='onEnroll'>我要报名</button>
-    <button class="weui-btn btn-share" type="primary" bindtap="publish" open-type="share">分享活动</button>
+    <button class="weui-btn btn-share" type="primary" bindtap="publish" open-type="share">邀请好友</button>
+    
     <!-- <button class="weui-btn" type="warn" bindtap="publish">截止报名</button> -->
     <!-- <button class="weui-btn" type="warn" bindtap="publish">取消报名</button> -->
     <!-- <button class="weui-btn" type="warn" bindtap="publish">活动已结束</button> -->

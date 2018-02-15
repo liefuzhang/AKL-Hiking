@@ -28,9 +28,18 @@
   background-color:#F8F8F8;
 }
 
+.userinfo{
+  text-align: center;
+  padding-top: 50rpx; 
+}
+
 .userinfo-avatar{
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
+}
+.activity-list{
+  text-align: center;
+  padding: 20rpx;
 }
