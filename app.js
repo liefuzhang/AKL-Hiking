@@ -4,8 +4,10 @@ const CONFIG = require('config.js');
 App({
   onLaunch: function (options) {
     if (options.scene == 1044) {
-      console.log('场景值＝', options.shareTicket)
+      console.log('分享的值＝', options.shareTicket)
     }
+
+    let _this = this;
 
     // 登录
     wx.checkSession({
@@ -15,33 +17,37 @@ App({
       fail: res => {
         wx.login({
           success: res => {
-            console.log('登录成功后：', res);
+            console.log('获取logo的code值：', res);
             // 发送 res.code 到后台换取 openId, sessionKey, unionId
             wx.request({
-              url: `${this.globalData.apiUrl}?mod=api&ctr=weixin&act=login`,
+              url: `${_this.globalData.apiUrl}?mod=api&ctr=weixin&act=login`,
+              dataType: 'json',
               data: {
-                appid: this.globalData.appid,
-                secret: this.globalData.secret,
                 js_code: res.code,
                 grant_type: 'authorization_code'
               },
               method: 'POST',
               success(result) {
+                console.log(result)
+                _this.globalData.openid = result.data.data.openid;
+
                 wx.setStorage({
                   key: "userInfo",
                   data: {
-                    openid: result.data.data.openid
+                    openid: result.data.data.openid,
+                    userid: result.data.data.userid,
+                    sessionKey: result.data.data.session_key
                   }
                 });
-                console.log('获取session_key的成功信息：', result)
+                console.log('获取session_key的成功信息：', result);
+
+                _this.getUserInfo(options.scene);
               }
             });
           }
         })
       }
     });
-
-    this.getUserInfo();
   },
 
   ohShow: function (options) {
@@ -53,25 +59,34 @@ App({
   globalData: {
     userInfo: null,
     apiUrl: CONFIG.apiUrl,
-    appid: CONFIG.appid,
-    secret: CONFIG.secret,
-    activityId:''
+    activityId: '',
+    openid: '',
+    userid: '',
+    sessionKey:'',
   },
   // 获取用户授权
-  getUserInfo: function(){
+  getUserInfo: function (scene = ''){
     let _this = this;
     // 获取用户信息, 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
     wx.getUserInfo({
       // withCredentials: true,
       success: res => {
+        res.userInfo.scene = scene;
         console.log('用户信息:', res);
 
         // 可以将 res 发送给后台解码出 unionId
         _this.globalData.userInfo = res.userInfo;
-        // wx.setStorage({
-        //   key: "userInfo",
-        //   data: res.userInfo
-        // })
+
+        console.log('openid=', _this.globalData.openid);
+        
+        wx.request({
+          url: `${_this.globalData.apiUrl}?mod=api&ctr=weixin&act=login&openid=${_this.globalData.openid}`,
+          data: res.userInfo,
+          method: 'POST',
+          success(result) {
+            console.log('用户信息储存成功：', result)
+          }
+        });
 
         // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
         // 所以此处加入 callback 以防止这种情况

@@ -1,3 +1,18 @@
+.pages{
+  padding: 20rpx;
+}
+.enrolls{
+  background: #fffaf0;
+}
+.enrolls .title{
+  text-align: center;
+}
+.userinfo-avatar{
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
 .weui-btn{
   position: fixed;
   bottom: 0;
@@ -8,10 +23,35 @@
 .btn-enroll{
   left:0;
 }
+
+.btn-create{
+  left:50%;
+}
+
 .btn-share{
   right:0;
-  background: yellow;
+  background: #ffa500 !important;
+}
+
+.btn-center{
+  width: 25%;
 }
 .enroll-people{
   color: red;
+}
+.subject{
+  text-align: center;
+  margin: 15px 0;
+}
+.artivity-list{
+  height: 32px;
+  line-height: 32px;
+  vertical-align: middle;
+  margin: 10px 0;
+}
+.artivity-list image{
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 20px;
 }

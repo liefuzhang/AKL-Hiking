@@ -26,7 +26,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -68,7 +68,7 @@
 					"id": 3,
 					"name": "活动详情",
 					"pathName": "pages/activity/detail",
-					"query": "id=5a812c54b54ca0101a9c2040",
+					"query": "id=5a8fb141c659a261d233f7f2",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群3",

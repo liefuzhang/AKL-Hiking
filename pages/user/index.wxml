@@ -14,11 +14,11 @@
           <view class='artivity-list'>
             <block wx:for="{{activeLists}}" wx:key="index" wx:if="{{activeLists.length !== 0}}">
               <view class='time'>
-                {{item.startDate}},{{item.startTime}} － {{item.endTime}},（星期三），正在报名中
+                {{item.activityId.startDate}},{{item.activityId.startTime}} － {{item.activityId.endTime}},（星期三），正在报名中
               </view>
               <view class='item-list'>
-                {{item.subject}}, {{item.address}},{{item.people}}人，
-                <navigator class='more' url="/pages/activity/detail?id={{item._id}}" hover-class="navigator-hover">查看更多</navigator>
+                {{item.activityId.subject}}, {{item.activityId.address}},{{item.activityId.people}}人，
+                <navigator class='more' url="/pages/activity/detail?id={{item.activityId._id}}" hover-class="navigator-hover">查看更多</navigator>
               </view>
             </block>
 
@@ -52,8 +52,7 @@
           </view>
         </view>
       </view>
-      <image open-type="contact" class='kefu'></image>
-      <button open-type="contact" class='kefu'>联系客服</button>
+      <!-- <button open-type="contact" class='kefu'>联系客服</button> -->
     </view>
   </view>
 </view>

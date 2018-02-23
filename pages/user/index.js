@@ -22,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let openid = wx.getStorageSync('userInfo').openid;
+    let userid = wx.getStorageSync('userInfo').userid;
     let that = this;
 
     wx.getSystemInfo({
@@ -36,7 +36,7 @@ Page({
 
     // 获取参加的活动数据
     wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=enrollList&openid=${openid}`,
+      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=enrollList&userid=${userid}`,
       method: 'GET',
       success(result) {
         that.setData({
@@ -48,7 +48,7 @@ Page({
 
     // 获取发布的数据
     wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityList&openid=${openid}`,
+      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityList&userid=${userid}`,
       method: 'GET',
       success(result) {
         that.setData({

@@ -17,6 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('排行榜');
     console.log('进来的值：', options);
     wx.showShareMenu({
       withShareTicket: true
@@ -61,7 +62,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log('首页显示');
   },
 
   /**
@@ -103,7 +104,7 @@ Page({
     return {
       // 我报名今晚的羽毛球活动，就差你了！
       title: '浪子神剑 邀请你来打羽毛球(2月2日,晚上20：00-22：00),目前已报3人，活动火热报名中……',
-      path: '/pages/ranking/index?id=123',
+      path: '/pages/activity/detail?id=5a812c54b54ca0101a9c2040',
       imageUrl: '/assets/baoming.jpg',
       success: function (res) {
         // 转发成功
@@ -123,4 +124,8 @@ Page({
       }
     }
   },
+
+  getUserInfo: function(){
+    console.log('手动获取用户信息。。。')
+  }
 })

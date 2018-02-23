@@ -26,6 +26,7 @@ Page({
   },
 
   onLoad: function (scene) {
+    console.log('发布活动');
     let id = app.globalData.activityId;
     this.setData({
       id: id
@@ -83,12 +84,12 @@ Page({
    * 发布活动
    */
   publish: function () {
-    let openid = wx.getStorageSync('userInfo').openid;
+    let userid = wx.getStorageSync('userInfo').userid;
     let id = this.data.id;
     let modelTitle = '活动发布成功';
 
     let obj = {
-      openid: openid,
+      userid: userid,
       subject: this.data.subject,
       startDate: this.data.startDate,
       startTime: this.data.startTime,
