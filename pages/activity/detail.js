@@ -40,6 +40,8 @@ Page({
       withShareTicket: true
     });
 
+    
+
     this.setData({
       myUserid: wx.getStorageSync('userInfo').userid
     });
@@ -67,6 +69,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     });
+
   },
 
   /**
@@ -125,6 +128,7 @@ Page({
             success: function (result) {
               console.log(result);
               let sessionKey = wx.getStorageSync('userInfo').sessionKey;
+
               wx.request({
                 url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=jiemi`,
                 method: 'POST',
@@ -134,7 +138,7 @@ Page({
                   encryptedData: result.encryptedData,
                 },
                 success(result) {
-                  console.log(result.data.data.openGId);
+                  console.log('解密的结果：',result.data.data.openGId);
                   _this.setData({
                     openGId: result.data.data.openGId
                   });
@@ -149,6 +153,10 @@ Page({
         console.log('失败');
       }
     }
+  },
+
+  getDeatilInfo: function(){
+
   },
 
   // 我要报名
