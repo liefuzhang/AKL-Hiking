@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/activity/index",
     "pages/user/index",
     "pages/activity/detail"
@@ -16,6 +17,12 @@
     "borderStyle": "#0BA8F9",
     "backgroundColor": "#0BA8F9",
     "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/assets/ico_1.png",
+        "selectedIconPath": "/assets/ico_1_1.png"
+      },
       {
         "pagePath": "pages/activity/index",
         "text": "发布活动",

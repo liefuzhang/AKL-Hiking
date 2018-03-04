@@ -46,13 +46,8 @@ Page({
       myUserid: wx.getStorageSync('userInfo').userid
     });
 
-    wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityInfo&id=${id}`,
-      method: 'GET',
-      success(result) {
-        _this.setData(result.data);
-      }
-    });
+    this.getEnrollData(id);
+    
   },
 
   /**
@@ -90,14 +85,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getEnrollData(this.data._id);
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    
   },
 
   /**
@@ -153,7 +148,7 @@ Page({
         console.log('失败');
       }
     }
-  },
+  }, 
 
   getDeatilInfo: function(){
 
@@ -184,6 +179,18 @@ Page({
             }
           }
         })
+      }
+    });
+  },
+
+  getEnrollData(id){
+    let _this = this;
+
+    wx.request({
+      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityInfo&id=${id}`,
+      method: 'GET',
+      success(result) {
+        _this.setData(result.data);
       }
     });
   },

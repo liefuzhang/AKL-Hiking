@@ -36,6 +36,7 @@ App({
                   data: {
                     openid: result.data.data.openid,
                     userid: result.data.data.userid,
+                    avatarUrl: result.data.data.avatarUrl,
                     sessionKey: result.data.data.session_key
                   }
                 });
@@ -62,6 +63,7 @@ App({
     activityId: '',
     openid: '',
     userid: '',
+    avatarUrl: '',
     sessionKey:'',
   },
   // 获取用户授权
