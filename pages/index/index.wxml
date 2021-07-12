@@ -1,20 +1,14 @@
-<view class='header'>
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像 </button>
-    <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <view class="userinfo-nickname">{{userInfo.nickName}}</view>
-    </block>
-  </view>
-</view>
-
 <view class='activity-list'>
-  <block wx:if="{{actityNum <= 0}}">
-    <text class='no-found'>~~您还没有参加活动!</text>
+  <block wx:if="{{loaded && activities.length <= 0}}">
+    <text>目前还没有发布活动
+      敬请期待</text>
   </block>
-
-  <navigator url='/pages/activity/index' class='publish' wx:if="{{actityNum <= 0}}" open-type="switchTab">我要发布活动</navigator>
-  <button class='btn-share' open-type="share">转发到微信群，查看我的群排名</button>
-  <button class='btn-share' open-type="share" wx:if="{{actityNum > 0}}">转发到微信群，查看我的群排名</button>
+  <block wx:else>
+    <view class='activity-item' wx:for="{{activities}}" data-id="{{item.id}}" bindtap="viewActivity">
+      <view>{{item.name}}</view>
+      <view>地点：{{item.location}}</view>
+      <view>日期：{{item.date}}</view>
+      <view>报名人数：{{item.hikerCount}}/{{item.countLimit}}</view>
+    </view>
+  </block>
 </view>
-

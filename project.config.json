@@ -1,94 +1,119 @@
 {
-	"description": "项目配置文件。",
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true
-	},
-	"compileType": "miniprogram",
-	"libVersion": "1.9.8",
-	"appid": "wx99159edbba6cbcd3",
-	"projectname": "%E7%BE%BD%E6%AF%9B%E7%90%83%E6%8E%92%E8%A1%8C%E6%A6%9C",
-	"isGameTourist": false,
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 3,
-			"list": [
-				{
-					"id": 0,
-					"name": "测试转发",
-					"pathName": "pages/user/index",
-					"query": "",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群5",
-						"shareName": "yUXFjb7P4F3aYY8ETB8xxA6iDiy-B7Hlo3FrlxHOKH8@cr4dev",
-						"shareKey": "tZCBSe0hhnp9r1QOWV-NtMeD5IzJKi49q4KXOt5lkQ_OHfGx72866JvG9HUQas38oEZmiVZDB_piHrhzQiCtcw~~"
-					}
-				},
-				{
-					"id": 1,
-					"name": "首页",
-					"pathName": "pages/index/index",
-					"query": "id=12345678",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群2",
-						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
-						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
-					}
-				},
-				{
-					"id": 3,
-					"name": "活动",
-					"pathName": "pages/activity/index",
-					"query": "",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群2",
-						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
-						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
-					}
-				},
-				{
-					"id": 3,
-					"name": "活动详情",
-					"pathName": "pages/activity/detail",
-					"query": "id=5a8fb141c659a261d233f7f2",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群3",
-						"shareName": "yUXFjb7P4F3aYY8ETB8xxGfFFuo2mZvhVA12TyvaNcc@cr4dev",
-						"shareKey": "m2EB3oMJNCFGHY4U8LfD2QAUplrnV_DjkKaf5mZrcN18JW7D8P8p-ki30oI179vpXhoz5efZHfV-YNxe9Dwg_g~~"
-					}
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/user/index",
-					"query": "id=12345678",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群2",
-						"shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
-						"shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
-					}
-				}
-			]
-		}
-	}
+  "description": "项目配置文件。",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "showES6CompileOption": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "1.9.8",
+  "appid": "wxfcff4aeeeacd0aaa",
+  "projectname": "AKL徒步",
+  "isGameTourist": false,
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "测试转发",
+          "pathName": "pages/user/index",
+          "query": "",
+          "scene": "1044",
+          "shareInfo": {
+            "groupName": "测试模拟群5",
+            "shareName": "yUXFjb7P4F3aYY8ETB8xxA6iDiy-B7Hlo3FrlxHOKH8@cr4dev",
+            "shareKey": "tZCBSe0hhnp9r1QOWV-NtMeD5IzJKi49q4KXOt5lkQ_OHfGx72866JvG9HUQas38oEZmiVZDB_piHrhzQiCtcw~~"
+          }
+        },
+        {
+          "id": 1,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "id=12345678",
+          "scene": "1044",
+          "shareInfo": {
+            "groupName": "测试模拟群2",
+            "shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
+            "shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+          }
+        },
+        {
+          "id": 3,
+          "name": "活动",
+          "pathName": "pages/activity/index",
+          "query": "",
+          "scene": "1044",
+          "shareInfo": {
+            "groupName": "测试模拟群2",
+            "shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
+            "shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+          }
+        },
+        {
+          "id": 3,
+          "name": "活动详情",
+          "pathName": "pages/activity/detail",
+          "query": "id=5a8fb141c659a261d233f7f2",
+          "scene": "1044",
+          "shareInfo": {
+            "groupName": "测试模拟群3",
+            "shareName": "yUXFjb7P4F3aYY8ETB8xxGfFFuo2mZvhVA12TyvaNcc@cr4dev",
+            "shareKey": "m2EB3oMJNCFGHY4U8LfD2QAUplrnV_DjkKaf5mZrcN18JW7D8P8p-ki30oI179vpXhoz5efZHfV-YNxe9Dwg_g~~"
+          }
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/user/index",
+          "query": "id=12345678",
+          "scene": "1044",
+          "shareInfo": {
+            "groupName": "测试模拟群2",
+            "shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
+            "shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
+          }
+        }
+      ]
+    }
+  }
 }

@@ -10,45 +10,38 @@ App({
     let _this = this;
 
     // 登录
-    wx.checkSession({
+    wx.login({
       success: res => {
-        console.log('登录状态未过期', res);
-      },
-      fail: res => {
-        wx.login({
-          success: res => {
-            console.log('获取logo的code值：', res);
-            // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            wx.request({
-              url: `${_this.globalData.apiUrl}?mod=api&ctr=weixin&act=login`,
-              dataType: 'json',
+        console.log('获取logo的code值：', res);
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: `${_this.globalData.apiUrl}account/authorize`,
+          dataType: 'json',
+          data: {
+            code: res.code
+          },
+          method: 'POST',
+          success(result) {
+            console.log(result)
+            _this.globalData.openid = result.data.openid;
+            _this.globalData.isAdmin = result.data.isAdmin;
+
+            wx.setStorage({
+              key: "userInfo",
               data: {
-                js_code: res.code,
-                grant_type: 'authorization_code'
-              },
-              method: 'POST',
-              success(result) {
-                console.log(result)
-                _this.globalData.openid = result.data.data.openid;
-
-                wx.setStorage({
-                  key: "userInfo",
-                  data: {
-                    openid: result.data.data.openid,
-                    userid: result.data.data.userid,
-                    avatarUrl: result.data.data.avatarUrl,
-                    sessionKey: result.data.data.session_key
-                  }
-                });
-                console.log('获取session_key的成功信息：', result);
-
-                _this.getUserInfo(options.scene);
+                openid: result.data.openid,
+                userid: result.data.userid,
+                avatarUrl: result.data.avatarUrl,
+                sessionKey: result.data.session_key
               }
             });
+            console.log('获取session_key的成功7信息：', result);
+
+            _this.getUserInfo(options.scene);
           }
-        })
+        });
       }
-    });
+    })
   },
 
   ohShow: function (options) {
@@ -65,6 +58,9 @@ App({
     userid: '',
     avatarUrl: '',
     sessionKey:'',
+    membershipId: '',
+    hikerId: null,
+    isAdmin: false
   },
   // 获取用户授权
   getUserInfo: function (scene = ''){
@@ -82,11 +78,13 @@ App({
         console.log('openid=', _this.globalData.openid);
         
         wx.request({
-          url: `${_this.globalData.apiUrl}?mod=api&ctr=weixin&act=login&openid=${_this.globalData.openid}`,
+          url: `${_this.globalData.apiUrl}account/login?openid=${_this.globalData.openid}`,
           data: res.userInfo,
           method: 'POST',
           success(result) {
             console.log('用户信息储存成功：', result)
+            _this.globalData.membershipId = result.data.membershipId;
+            _this.globalData.hikerId = result.data.id;
           }
         });
 

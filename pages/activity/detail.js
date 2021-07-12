@@ -10,29 +10,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    _id: '',
-    subject: '',
-    startDate: '',
+    activity: {},
+    id: '',
+    name: '',
+    date: new Date(),
     startTime: '',
-    endDate: '',
     endTime: '',
-    closeDate: '',
-    closeTime: '',
-    address: '',
-    people: '',
-    tel: '',
-    remark: '',
-    userList: [],
-    userid: '',
-    myUserid: '',
-    openGId: ''
+    location: '',
+    description: '',
+    hikerList: [],
+    openGId: '',
+    alreadyEnrolled: false,
+    loaded: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options = {}) {
-    console.log('详情');
+    console.log('详情' + this.data.loaded);
     let id = options.id || '';
     let _this = this;
 
@@ -40,14 +36,7 @@ Page({
       withShareTicket: true
     });
 
-    
-
-    this.setData({
-      myUserid: wx.getStorageSync('userInfo').userid
-    });
-
     this.getEnrollData(id);
-    
   },
 
   /**
@@ -92,7 +81,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
@@ -127,13 +116,13 @@ Page({
               wx.request({
                 url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=jiemi`,
                 method: 'POST',
-                data:{
+                data: {
                   sessionKey: sessionKey,
                   iv: result.iv,
                   encryptedData: result.encryptedData,
                 },
                 success(result) {
-                  console.log('解密的结果：',result.data.data.openGId);
+                  console.log('解密的结果：', result.data.data.openGId);
                   _this.setData({
                     openGId: result.data.data.openGId
                   });
@@ -148,34 +137,32 @@ Page({
         console.log('失败');
       }
     }
-  }, 
+  },
 
-  getDeatilInfo: function(){
+  getDeatilInfo: function () {
 
   },
 
   // 我要报名
-  onEnroll: function (id) {
-    let userid = wx.getStorageSync('userInfo').userid;
+  onEnroll: function () {
     let _this = this;
 
     wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityEnroll&activityId=${_this.data._id}&userid=${userid}`,
-      method: 'GET',
+      url: `${app.globalData.apiUrl}activity/enroll`,
+      data: {
+        hikerId: app.globalData.hikerId,
+        activityId: _this.data.activity.id
+      },
+      method: 'POST',
       success(result) {
-        if (result.code) {
-
-        }
-
+        console.log("报名成功！")
         wx.showModal({
           title: '报名成功！',
           showCancel: false,
           content: "报名成功了，分享到群里让更多小伙伴来参与吧！",
           success: function (res) {
             if (res.confirm) {
-              wx.navigateTo({
-                url: '/pages/activity/detail?id=' + res.data.activityId
-              })
+              _this.getEnrollData(_this.data.activity.id);
             }
           }
         })
@@ -183,14 +170,36 @@ Page({
     });
   },
 
-  getEnrollData(id){
+  onCancelEnrollment: function (){
+    let _this = this;
+    wx.request({
+      url: `${app.globalData.apiUrl}activity/cancelEnrollment`,
+      data: {
+        hikerId: app.globalData.hikerId,
+        activityId: _this.data.activity.id
+      },
+      method: 'POST',
+      success(result) {
+        _this.getEnrollData(_this.data.activity.id);
+      }
+    });
+  },
+
+  getEnrollData(id) {
     let _this = this;
 
     wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityInfo&id=${id}`,
+      url: `${app.globalData.apiUrl}activity/get/${id}`,
       method: 'GET',
-      success(result) {
-        _this.setData(result.data);
+      success(res) {
+        console.log("Hiker:" + res.data)
+        let activity = res.data;
+        _this.setData({
+          activity: activity,
+          hikerList: activity.hikers,
+          alreadyEnrolled: activity.hikers && activity.hikers.some(h => h.id === app.globalData.hikerId),
+          loaded: true
+        });
       }
     });
   },
@@ -236,14 +245,6 @@ Page({
   // 取消活动
   onCancelActivity: function () {
     console.log('取消成功！')
-  },
-
-  //预览用户
-  viewUser: function () {
-    wx.showModal({
-      title: '',
-      content: '浪子神剑（男）',
-    })
   },
 
   // 创建活动

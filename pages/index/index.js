@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    actityNum: 0,
+    activities: [],
+    loaded: false,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -17,8 +18,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('排行榜');
-    console.log('进来的值：', options);
+    let _this = this;
+    console.log("onLoad hereeee  - " + app.globalData.apiUrl)
+    wx.request({
+      url: `${app.globalData.apiUrl}activity/getall`,
+      method: 'GET',
+      success(res) {
+        _this.setData({
+          activities: res.data,
+          loaded: true
+        });
+        console.log(res.data);
+      }
+    });
+
     wx.showShareMenu({
       withShareTicket: true
     });
@@ -112,11 +125,11 @@ Page({
         // 获取分享到的信息
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],
-          success: function(result){
+          success: function (result) {
             console.log(result)
           }
         })
-        
+
       },
       fail: function (res) {
         // 转发失败
@@ -125,7 +138,14 @@ Page({
     }
   },
 
-  getUserInfo: function(){
+  getUserInfo: function () {
     console.log('手动获取用户信息。。。')
+  },
+
+  viewActivity: function(event) {
+    console.log(event.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '/pages/activity/detail?id=' + event.currentTarget.dataset.id
+    })
   }
 })

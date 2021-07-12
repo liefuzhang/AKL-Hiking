@@ -1,14 +1,14 @@
 <view class='pages'>
-  <view class="subject">
-    {{subject}}
+  <view class="name">
+    {{activity.name}}
   </view>
 
   <view class="artivity-list">
-    <image src='/assets/ico_people.png'></image>浪子神剑
+    <image src='/assets/ico_date.png'></image>{{activity.year}}年{{activity.month}}月{{activity.day}}日
   </view>
 
-  <view class="artivity-list" wx:if="{{address}}">
-    <image src='/assets/ico_address.png'></image>{{address}}
+  <view class="artivity-list">
+    <image src='/assets/ico_address.png'></image>{{activity.location}}
   </view>
 
   <view class="artivity-list">
@@ -22,82 +22,24 @@
 
   <view class="enrolls">
     <view class="title">
-      已报名
-      <text class='enroll-people' wx:if="{{userList.length > 0}}">{{userList.length}}</text>人
+      已有<text>{{hikerList.length}}</text>人报名，总名额共{{activity.countLimit}}人
     </view>
     <view>
-      <block wx:for="{{userList}}" wx:key="unique">
-      <image class="userinfo-avatar" bindtap='viewUser' src='{{item.userid.avatarUrl}}'></image>
-      </block>
-    </view>
-    <view class="weui-cell__bd">
-      <view class="weui-input">
-        <block wx:for="{{peoples}}" wx:key="unique">
-          <image src='{{item.pic}}'></image>
-          <text class="log-item">{{item.name}}</text>
-        </block>
+      <view class="hiker-item" wx:for="{{hikerList}}" wx:key="unique">
+        <image class="userinfo-avatar" src='{{item.avatarUrl}}'></image>
+        <text>{{item.name}}</text>
       </view>
     </view>
   </view>
-  
-  <!-- <view class="artivity-list">
-    <view class="weui-cell__hd">
-      <view class="weui-label">截止时间</view>
-    </view>
-
-    <view class="weui-cell__bd">
-      <view class="weui-input">{{closeDate}}</view>
-    </view>
-    <view class="weui-cell__bd">
-      <view class="weui-input">{{closeTime}}</view>
-    </view>
-  </view> -->
-
-  <!-- <view class="artivity-list">
-    <view class="weui-cell__hd">
-      <view class="weui-label">限制人数</view>
-    </view>
-    <view class="weui-cell__bd">
-      <view class="weui-input">{{people}}</view>
-    </view>
-  </view> -->
-
-  <!-- <view class="artivity-list">
-    <view class="weui-cell__hd">
-      <view class="weui-label">负责人电话</view>
-    </view>
-    <view class="weui-cell__bd">
-      <view class="weui-input">{{tel}}</view>
-    </view>
-  </view> -->
-
-  <!-- <view class="weui-cells__title">活动说明</view>
-  <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell">
-      <view class="weui-cell__bd">
-        {{remark}}
-      </view>
-    </view>
-  </view> -->
 </view>
 
 <view class="">
-    <!-- <open-data type="groupName" open-gid="GXJB_4reOCnOTLGn0lVne-kTZX5Q"></open-data>   -->
-    <open-data type="groupName" open-gid="{{openGId}}"></open-data>  
+  <open-data type="groupName" open-gid="{{openGId}}"></open-data>
 
-  <block wx:if="{{userid && myUserid && userid === myUserid}}">
-    <button class="weui-btn btn-enroll" type="primary" bindtap='onManageActivity'>管理活动</button>
-    <button class="weui-btn btn-share" type="primary" open-type="share">邀请好友</button>
+  <block wx:if="{{loaded && alreadyEnrolled}}">
+    <button class="weui-btn btn-enroll" type="primary" bindtap='onCancelEnrollment'>取消报名</button>
   </block>
-  <block wx:else>
-    <button class="weui-btn btn-enroll" type="primary" bindtap='onEnroll'>我要报名</button>
-    <button class="weui-btn btn-share btn-center" type="primary" open-type="share">邀请好友</button>
-    <button class="weui-btn btn-create btn-center" type="primary" bindtap="createActivity">创建活动</button>
+  <block wx:elif="{{loaded}}">
+    <button class="weui-btn btn-enroll" type="primary" bindtap='onEnroll'>立即报名</button>
   </block>
-
-  <!-- <button class="weui-btn" type="warn" bindtap="publish">截止报名</button> -->
-  <!-- <button class="weui-btn" type="warn" bindtap="publish">取消报名</button> -->
-  <!-- <button class="weui-btn" type="warn" bindtap="publish">活动已结束</button> -->
-  <!-- <button class="weui-btn" type="warn" bindtap="publish">人数已满</button> -->
-  <!-- <button class="weui-btn" type="default" bindtap="publish">取消/修改</button> -->
 </view>

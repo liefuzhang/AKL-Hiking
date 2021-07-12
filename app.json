@@ -9,12 +9,12 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0BA8F9",
     "navigationBarTitleText": "羽毛球活动报名",
-    "navigationBarTextStyle": "#ffffff"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#FFFFFF",
     "selectedColor": "#FFFF00",
-    "borderStyle": "#0BA8F9",
+    "borderStyle": "white",
     "backgroundColor": "#0BA8F9",
     "list": [
       {
@@ -37,5 +37,6 @@
       }
     ]
   },
-  "debug": true
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
 }
