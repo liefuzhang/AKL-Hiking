@@ -1,7 +1,20 @@
 .pages {
   padding: 30rpx 50rpx;
+  position: relative;
   min-height: 100vh;
-  background-image: url('/assets/auckland.png');
+}
+.pages::after {
+  content: "";
+  background: url('https://raw.githubusercontent.com/liefuzhang/AKL-Hiking/f36f6964d5d2f9c9ac6c261db2a8d11f4ff34a57/assets/auckland.png');
+  background-size: cover;
+  background-color: black;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
 }
 
 .userinfo-avatar {
