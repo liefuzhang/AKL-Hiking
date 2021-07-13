@@ -8,10 +8,6 @@
   </view>
 
   <view class="artivity-list">
-    <image src='/assets/ico_address.png'></image>{{activity.location}}
-  </view>
-
-  <view class="artivity-list">
     <block wx:if="{{startDate === endDate}}">
       <image src='/assets/ico_time.png'></image>{{startDate}} {{startTime}} - {{endTime}}
     </block>
@@ -20,14 +16,18 @@
     </block>
   </view>
 
+  <view class="artivity-list">
+    <image src='/assets/ico_address.png'></image>{{activity.location}}
+  </view>
+
   <view class="enrolls">
     <view class="title">
       已有<text>{{hikerList.length}}</text>人报名，总名额共{{activity.countLimit}}人
     </view>
-    <view>
+    <view class="hiker-list">
       <view class="hiker-item" wx:for="{{hikerList}}" wx:key="unique">
         <image class="userinfo-avatar" src='{{item.avatarUrl}}'></image>
-        <text>{{item.name}}</text>
+        <text class="hiker-name">{{item.name}}</text>
       </view>
     </view>
   </view>

@@ -7,7 +7,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#0BA8F9",
+    "navigationBarBackgroundColor": "#297fa3",
     "navigationBarTitleText": "羽毛球活动报名",
     "navigationBarTextStyle": "white"
   },
@@ -15,7 +15,7 @@
     "color": "#FFFFFF",
     "selectedColor": "#FFFF00",
     "borderStyle": "white",
-    "backgroundColor": "#0BA8F9",
+    "backgroundColor": "#297fa3",
     "list": [
       {
         "pagePath": "pages/index/index",

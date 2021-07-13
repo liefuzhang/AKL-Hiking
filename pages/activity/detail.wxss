@@ -1,53 +1,78 @@
-.pages{
-  padding: 20rpx;
+.pages {
+  padding: 30rpx 50rpx;
+  min-height: 100vh;
+  background-image: url('/assets/auckland.png');
 }
-.userinfo-avatar{
-  width: 128rpx;
-  height: 128rpx;
+
+.userinfo-avatar {
+  width: 108rpx;
+  height: 108rpx;
   margin: 20rpx;
   border-radius: 50%;
 }
+
+.hiker-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 .hiker-item {
   display: flex;
   flex-direction: column;
+  max-width: 25%;
+  width: 25%;
 }
-.weui-btn{
+
+.hiker-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.weui-btn {
   position: fixed;
   bottom: 0;
   width: 50%;
   border-radius: 0;
   border: none;
 }
-.btn-enroll{
-  left:0;
+
+.btn-enroll {
+  left: 0;
 }
 
-.btn-create{
-  left:50%;
+.btn-create {
+  left: 50%;
 }
 
-.btn-share{
-  right:0;
+.btn-share {
+  right: 0;
   background: #ffa500 !important;
 }
 
-.btn-center{
+.btn-center {
   width: 25%;
 }
-.enroll-people{
+
+.enroll-people {
   color: red;
 }
-.subject{
+
+.subject {
   text-align: center;
   margin: 15px 0;
 }
-.artivity-list{
+
+.artivity-list {
   height: 32px;
   line-height: 32px;
   vertical-align: middle;
   margin: 10px 0;
 }
-.artivity-list image{
+
+.artivity-list image {
   width: 24px;
   height: 24px;
   vertical-align: middle;

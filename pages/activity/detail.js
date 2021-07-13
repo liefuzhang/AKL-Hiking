@@ -192,8 +192,10 @@ Page({
       url: `${app.globalData.apiUrl}activity/get/${id}`,
       method: 'GET',
       success(res) {
-        console.log("Hiker:" + res.data)
+        console.log("Hiker:" + res.data.hikers[0].id)
         let activity = res.data;
+        console.log("app.globalData.hikerId:" + app.globalData.hikerId)
+        console.log("hh" + activity.hikers.some(h => h.id === app.globalData.hikerId))
         _this.setData({
           activity: activity,
           hikerList: activity.hikers,
