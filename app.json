@@ -16,8 +16,7 @@
     "selectedColor": "#FFFF00",
     "borderStyle": "white",
     "backgroundColor": "#297fa3",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "/assets/ico_1.png",

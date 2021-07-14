@@ -1,20 +1,30 @@
+@import "../../assets/iconfont/iconfont.wxss";
+
 .pages {
+  margin-bottom: 40px;
   padding: 30rpx 50rpx;
   position: relative;
   min-height: 100vh;
 }
+
 .pages::after {
   content: "";
-  background: url('https://raw.githubusercontent.com/liefuzhang/AKL-Hiking/f36f6964d5d2f9c9ac6c261db2a8d11f4ff34a57/assets/auckland.png');
   background-size: cover;
-  background-color: black;
-  opacity: 0.5;
+  background-color: #dddddd;
+  opacity: 0.8;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
+}
+
+.divLine {
+  background: #bbbbbb;
+  width: 100%;
+  height: 2rpx;
+  margin: 8px 0;
 }
 
 .userinfo-avatar {
@@ -85,9 +95,35 @@
   margin: 10px 0;
 }
 
-.artivity-list image {
-  width: 24px;
-  height: 24px;
+image {
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
+}
+
+.artivity-list image {
   margin-right: 20px;
+}
+
+.footer {
+  background-color: #cccccc;
+  border-radius: 15px 15px 0 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  font-size: 13px;
+  padding: 5px 10px;
+}
+
+.btn-enroll {
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

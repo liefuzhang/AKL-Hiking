@@ -11,15 +11,15 @@ Page({
     loaded: false,
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUseGetUserProfile: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (options) {    
     let _this = this;
-    console.log("onLoad hereeee  - " + app.globalData.apiUrl)
+
     wx.request({
       url: `${app.globalData.apiUrl}activity/getall`,
       method: 'GET',
@@ -35,75 +35,6 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     });
-
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    console.log('首页显示');
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**
@@ -138,11 +69,7 @@ Page({
     }
   },
 
-  getUserInfo: function () {
-    console.log('手动获取用户信息。。。')
-  },
-
-  viewActivity: function(event) {
+  viewActivity: function (event) {
     console.log(event.currentTarget.dataset.id);
     wx.navigateTo({
       url: '/pages/activity/detail?id=' + event.currentTarget.dataset.id

@@ -20,8 +20,11 @@
     <image src='/assets/ico_address.png'></image>{{activity.location}}
   </view>
 
+  <view class="divLine"></view>
+
   <view class="enrolls">
     <view class="title">
+      <image src='/assets/ico_people.png'></image>
       已有<text>{{hikerList.length}}</text>人报名，总名额共{{activity.countLimit}}人
     </view>
     <view class="hiker-list">
@@ -30,16 +33,30 @@
         <text class="hiker-name">{{item.name}}</text>
       </view>
     </view>
+    <block wx:if="{{waitingList && waitingList.length> 0}}">
+      <view class="divLine"></view>
+      <view class="title">
+        <image src='/assets/ico_people.png'></image>
+        候补报名（有空缺，自动补上）
+      </view>
+      <view class="hiker-list">
+        <view class="hiker-item" wx:for="{{waitingList}}" wx:key="unique">
+          <image class="userinfo-avatar" src='{{item.avatarUrl}}'></image>
+          <text class="hiker-name">{{item.name}}</text>
+        </view>
+      </view>
+    </block>
   </view>
 </view>
 
-<view class="">
-  <open-data type="groupName" open-gid="{{openGId}}"></open-data>
-
+<view class="footer">
+  <view class="footer-item" bindtap='onNavigateToHome'>
+    <view class="iconfont icon-home"></view>主页
+  </view>
   <block wx:if="{{loaded && alreadyEnrolled}}">
-    <button class="weui-btn btn-enroll" type="primary" bindtap='onCancelEnrollment'>取消报名</button>
+    <button class="btn-enroll" type="primary" bindtap='onCancelEnrollment'>取消报名</button>
   </block>
   <block wx:elif="{{loaded}}">
-    <button class="weui-btn btn-enroll" type="primary" bindtap='onEnroll'>立即报名</button>
+    <button class="btn-enroll" type="primary" bindtap='onEnroll'>现在报名</button>
   </block>
 </view>

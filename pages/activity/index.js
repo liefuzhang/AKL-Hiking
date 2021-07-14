@@ -84,7 +84,7 @@ Page({
    * 发布活动
    */
   publish: function () {
-    let userid = wx.getStorageSync('userInfo').userid;
+    let userid = null;
     let id = this.data.id;
     let modelTitle = '活动发布成功';
 

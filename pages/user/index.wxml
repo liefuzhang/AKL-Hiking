@@ -1,13 +1,28 @@
 <view class="page">
+  <!-- 当已经授权的时候 -->
+  <view wx:if="{{result == 'ok'}}" class="result">
+    <view class="headimg">
+      <image src="{{avatarUrl}}"></image>
+    </view>
+    <view class="nickname">{{nickName}}</view>
+  </view>
+  <!-- 当未授权的时候 -->
+  <view wx:else class="result">
+    <view>未授权</view>
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </view>
   <view class="page__bd">
     <view class="weui-tab">
       <view class="weui-navbar">
         <block wx:for="{{tabs}}" wx:key="*this">
-          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+            bindtap="tabClick">
             <view class="weui-navbar__title">{{item}}</view>
           </view>
         </block>
-        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+        <view class="weui-navbar__slider"
+          style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);">
+        </view>
       </view>
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
@@ -18,7 +33,8 @@
               </view>
               <view class='item-list'>
                 {{item.activityId.subject}}, {{item.activityId.address}},{{item.activityId.people}}人，
-                <navigator class='more' url="/pages/activity/detail?id={{item.activityId._id}}" hover-class="navigator-hover">查看更多</navigator>
+                <navigator class='more' url="/pages/activity/detail?id={{item.activityId._id}}"
+                  hover-class="navigator-hover">查看更多</navigator>
               </view>
             </block>
 
@@ -39,7 +55,8 @@
               </view>
               <view class='item-list'>
                 {{item.subject}}, {{item.address}},{{item.people}}人，
-                <navigator class='more' url="/pages/activity/detail?id={{item._id}}" hover-class="navigator-hover">查看更多</navigator>
+                <navigator class='more' url="/pages/activity/detail?id={{item._id}}" hover-class="navigator-hover">查看更多
+                </navigator>
               </view>
             </block>
 

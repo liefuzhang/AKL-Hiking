@@ -11,4 +11,5 @@
       <view>报名人数：{{item.hikerCount}}/{{item.countLimit}}</view>
     </view>
   </block>
+
 </view>

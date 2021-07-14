@@ -1,6 +1,3 @@
-// let API = require('../../utils/api.js');
-// let Data = require('../../utils/data.js');
-
 //获取应用实例
 const app = getApp()
 
@@ -19,9 +16,12 @@ Page({
     location: '',
     description: '',
     hikerList: [],
+    waitingList: [],
     openGId: '',
     alreadyEnrolled: false,
-    loaded: false
+    loaded: false,
+    canIUseGetUserProfile: false,
+    hasUserInfo: false
   },
 
   /**
@@ -29,6 +29,12 @@ Page({
    */
   onLoad: function (options = {}) {
     console.log('详情' + this.data.loaded);
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
+
     let id = options.id || '';
     let _this = this;
 
@@ -111,7 +117,7 @@ Page({
             shareTicket: res.shareTickets[0],
             success: function (result) {
               console.log(result);
-              let sessionKey = wx.getStorageSync('userInfo').sessionKey;
+              let sessionKey = '';
 
               wx.request({
                 url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=jiemi`,
@@ -145,8 +151,15 @@ Page({
 
   // 我要报名
   onEnroll: function () {
-    let _this = this;
+    if (app.globalData.userRegistered) {
+      this.login(this.enrollForActivity);
+    } else {
+      this.getUserProfile(this.enrollForActivity)
+    }    
+  },
 
+  enrollForActivity: function() {
+    var _this = this;
     wx.request({
       url: `${app.globalData.apiUrl}activity/enroll`,
       data: {
@@ -194,11 +207,10 @@ Page({
       success(res) {
         console.log("Hiker:" + res.data.hikers[0].id)
         let activity = res.data;
-        console.log("app.globalData.hikerId:" + app.globalData.hikerId)
-        console.log("hh" + activity.hikers.some(h => h.id === app.globalData.hikerId))
         _this.setData({
           activity: activity,
-          hikerList: activity.hikers,
+          hikerList: activity.hikers.slice(0, activity.countLimit),
+          waitingList: activity.hikers.slice(activity.countLimit),
           alreadyEnrolled: activity.hikers && activity.hikers.some(h => h.id === app.globalData.hikerId),
           loaded: true
         });
@@ -249,10 +261,65 @@ Page({
     console.log('取消成功！')
   },
 
+  onNavigateToHome:function(){
+    wx.navigateBack({ changed: true });
+  },
+
   // 创建活动
   createActivity: function () {
     wx.switchTab({
       url: '/pages/activity/index'
     });
-  }
+  },
+  getUserProfile(callback) {
+    var _this = this;
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        _this.register(res.userInfo, callback);
+      }
+    })
+  },
+  register: function(userInfo, callback){
+    var _this = this;
+    wx.request({
+      url: `${app.globalData.apiUrl}account/register?openid=${app.globalData.openid}`,
+      data: userInfo,
+      method: 'POST',
+      success(result) {
+        console.log('用户login成功：', result)
+        
+        app.globalData.membershipId = result.data.membershipId;
+        app.globalData.hikerId = result.data.id;
+        app.globalData.avatarUrl = result.data.avatarUrl;
+        app.globalData.userRegistered = true;
+
+        _this.setData({
+          hasUserInfo: true
+        })
+
+        callback();
+      }
+  })},
+
+  login: function(callback){
+    var _this = this;
+    wx.request({
+      url: `${app.globalData.apiUrl}account/login?openid=${app.globalData.openid}`,
+      method: 'POST',
+      success(result) {
+        console.log('用户login成功：', result)
+        app.globalData.membershipId = result.data.membershipId;
+        app.globalData.hikerId = result.data.id;
+        app.globalData.avatarUrl = result.data.avatarUrl;
+
+        _this.setData({
+          hasUserInfo: true
+        });
+
+        callback();
+      }
+  })}
 })
