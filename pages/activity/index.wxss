@@ -1,4 +1,27 @@
 /**index.wxss**/
+@import "../../assets/iconfont/iconfont.wxss";
+
+.head-photo{
+  width: 200px;
+  margin: 5px auto 10px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: dotted rgb(223, 39, 39) 1px;  
+  color: #666;
+}
+.head-photo .icon-plus{
+  font-size: 30px;
+  color: #666;
+}
+.page__bd {
+  padding: 15px;
+}
+.weui-cell {
+  margin-bottom: 10px;
+}
 .userinfo {
   display: flex;
   flex-direction: column;

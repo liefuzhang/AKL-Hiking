@@ -21,19 +21,22 @@ Page({
     alreadyEnrolled: false,
     loaded: false,
     canIUseGetUserProfile: false,
-    hasUserInfo: false
+    isAdmin: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options = {}) {
-    console.log('详情' + this.data.loaded);
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
       })
     }
+
+    this.setData({
+      isAdmin: app.globalData.isAdmin
+    })
 
     let id = options.id || '';
     let _this = this;
@@ -80,7 +83,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getEnrollData(this.data._id);
+    this.getEnrollData(this.data.activity.id);
   },
 
   /**
@@ -88,6 +91,12 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+
+  onNavigateToHome: function () {
+    wx.navigateBack({
+      changed: true
+    });
   },
 
   /**
@@ -152,13 +161,13 @@ Page({
   // 我要报名
   onEnroll: function () {
     if (app.globalData.userRegistered) {
-      this.login(this.enrollForActivity);
+      this.enrollForActivity();
     } else {
       this.getUserProfile(this.enrollForActivity)
-    }    
+    }
   },
 
-  enrollForActivity: function() {
+  enrollForActivity: function () {
     var _this = this;
     wx.request({
       url: `${app.globalData.apiUrl}activity/enroll`,
@@ -183,7 +192,7 @@ Page({
     });
   },
 
-  onCancelEnrollment: function (){
+  onCancelEnrollment: function () {
     let _this = this;
     wx.request({
       url: `${app.globalData.apiUrl}activity/cancelEnrollment`,
@@ -205,7 +214,6 @@ Page({
       url: `${app.globalData.apiUrl}activity/get/${id}`,
       method: 'GET',
       success(res) {
-        console.log("Hiker:" + res.data.hikers[0].id)
         let activity = res.data;
         _this.setData({
           activity: activity,
@@ -247,30 +255,36 @@ Page({
     })
   },
 
-  // 修改活动
   onEditActivity: function () {
-    app.globalData.activityId = this.data._id;
+    app.globalData.activityId = this.data.activity.id;
 
     wx.switchTab({
       url: '/pages/activity/index'
     });
   },
 
-  // 取消活动
-  onCancelActivity: function () {
-    console.log('取消成功！')
+  onDeleteActivity: function () {
+    var _this= this;
+    wx.showModal({
+      title: '确定删除活动',
+      showCancel: true,
+      content: "确定删除这个活动?",
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: `${app.globalData.apiUrl}activity/${_this.data.activity.id}`,
+            method: 'DELETE',
+            success(result) {
+              wx.switchTab({
+                url: '/pages/index/index'
+              });
+            }
+          })
+        }
+      }
+    })
   },
 
-  onNavigateToHome:function(){
-    wx.navigateBack({ changed: true });
-  },
-
-  // 创建活动
-  createActivity: function () {
-    wx.switchTab({
-      url: '/pages/activity/index'
-    });
-  },
   getUserProfile(callback) {
     var _this = this;
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
@@ -282,7 +296,7 @@ Page({
       }
     })
   },
-  register: function(userInfo, callback){
+  register: function (userInfo, callback) {
     var _this = this;
     wx.request({
       url: `${app.globalData.apiUrl}account/register?openid=${app.globalData.openid}`,
@@ -290,36 +304,14 @@ Page({
       method: 'POST',
       success(result) {
         console.log('用户login成功：', result)
-        
+
         app.globalData.membershipId = result.data.membershipId;
         app.globalData.hikerId = result.data.id;
         app.globalData.avatarUrl = result.data.avatarUrl;
         app.globalData.userRegistered = true;
 
-        _this.setData({
-          hasUserInfo: true
-        })
-
         callback();
       }
-  })},
-
-  login: function(callback){
-    var _this = this;
-    wx.request({
-      url: `${app.globalData.apiUrl}account/login?openid=${app.globalData.openid}`,
-      method: 'POST',
-      success(result) {
-        console.log('用户login成功：', result)
-        app.globalData.membershipId = result.data.membershipId;
-        app.globalData.hikerId = result.data.id;
-        app.globalData.avatarUrl = result.data.avatarUrl;
-
-        _this.setData({
-          hasUserInfo: true
-        });
-
-        callback();
-      }
-  })}
+    })
+  }
 })

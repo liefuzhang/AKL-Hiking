@@ -6,28 +6,18 @@ const app = getApp()
 Page({
   data: {
     id: '',
-    subject: '',
+    name: '',
     startDate: util.formatTime(new Date, 1),
     startTime: util.formatTime(new Date, 2),
-    endDate: util.formatTime(new Date, 1),
-    endTime: util.formatTime(new Date, 2),
-    closeDate: util.formatTime(new Date, 1),
-    closeTime: util.formatTime(new Date, 2),
-    address: '',
-    people: '',
-    tel: '',
-    remark: ''
+    duration: '',
+    location: '',
+    countLimit: '',
+    description: '',
+    files: []
   },
   //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-
-  onLoad: function (scene) {
-    console.log('发布活动');
-    let id = app.globalData.activityId;
+  onLoad: function () {
+    let id = app.globalData.activityId || '';
     this.setData({
       id: id
     });
@@ -35,11 +25,18 @@ Page({
 
     if (id !== '') {
       wx.request({
-        url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityInfo&id=${id}`,
+        url: `${app.globalData.apiUrl}activity/get/${id}`,
         method: 'GET',
-        success(result) {
-          _this.setData(result.data);
-          console.log(result);
+        success(res) {
+          let activity = res.data;
+          _this.setData({
+            name: activity.name,
+            description: activity.description,
+            location: activity.location,
+            startDate: activity.dateString,
+            startTime: activity.timeString,
+            countLimit: activity.countLimit
+          });
         }
       });
     }
@@ -84,32 +81,27 @@ Page({
    * 发布活动
    */
   publish: function () {
-    let userid = null;
     let id = this.data.id;
     let modelTitle = '活动发布成功';
-
+    debugger
     let obj = {
-      userid: userid,
-      subject: this.data.subject,
-      startDate: this.data.startDate,
-      startTime: this.data.startTime,
-      endDate: this.data.endDate,
-      endTime: this.data.endTime,
-      closeDate: this.data.closeDate,
-      closeTime: this.data.closeTime,
-      address: this.data.address,
-      people: this.data.people,
-      tel: this.data.tel,
-      remark: this.data.remark
+      id: this.data.id || 0,
+      createdByHikerId: app.globalData.hikerId,
+      name: this.data.name,
+      startDateTime: new Date(`${this.data.startDate} ${this.data.startTime}`),
+      duration: this.data.duration,
+      location: this.data.location,
+      countLimit: this.data.countLimit || 0,
+      description: this.data.description
     }
 
     wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityAdd&id=${id}`,
+      url: `${app.globalData.apiUrl}activity/addOrUpdate`,
       data: obj,
       method: 'POST',
       success(result) {
         app.globalData.activityId = '';
-        if(id !== ''){
+        if (id !== '') {
           modelTitle = '活动修改成功';
         }
 
@@ -119,9 +111,9 @@ Page({
           content: "活动已成功发布，您可转发到群里，约他们一起打球吧！",
           success: function (res) {
             if (res.confirm) {
-              wx.navigateTo({
-                url: '/pages/activity/detail?id=' + ((id !== '') ? id : result.data._id)
-              })
+              wx.switchTab({
+                url: '/pages/index/index'
+              });
             }
           }
         })
@@ -140,15 +132,6 @@ Page({
   },
 
   /**
-  * 更改结束日期
-  */
-  endDateChange(e) {
-    this.setData({
-      endDate: e.detail.value
-    })
-  },
-
-  /**
    * 更改开始时间
    */
   startTimeChange(e) {
@@ -157,60 +140,84 @@ Page({
     })
   },
 
-  /**
-  * 更改结束时间
-  */
-  endTimeChange(e) {
+  inputName(e) {
     this.setData({
-      endTime: e.detail.value
+      name: e.detail.value
     })
   },
 
-  /**
-   * 更改截止时间
-   */
-  closeDateChange(e) {
+  inputLocation(e) {
     this.setData({
-      closeDate: e.detail.value
+      location: e.detail.value
     })
   },
 
-  /**
-  * 更改截止时间
-  */
-  closeTimeChange(e) {
+  inputDuration(e) {
     this.setData({
-      closeTime: e.detail.value
+      duration: e.detail.value
     })
   },
 
-  inputSubject(e) {
+  inputCountLimit(e) {
     this.setData({
-      subject: e.detail.value
+      countLimit: e.detail.value
     })
   },
 
-  inputAddress(e) {
+  inputDescription(e) {
     this.setData({
-      address: e.detail.value
+      description: e.detail.value
     })
   },
 
-  inputPeople(e) {
-    this.setData({
-      people: e.detail.value
-    })
-  },
-
-  inputTel(e) {
-    this.setData({
-      tel: e.detail.value
-    })
-  },
-
-  inputRemark(e) {
-    this.setData({
-      remark: e.detail.value
+  onChooseImage() {
+    var _this = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        wx.showLoading({
+          title: '上传中,请稍等...',
+        })
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        
+        for (var i = 0; i < tempFilePaths.length; i++) {
+          console.log('图片地址名称' + tempFilePaths[i]);
+          wx.uploadFile({
+            url: app.globalData.apiUrl + "photo/upload",
+            filePath: tempFilePaths[i],
+            header: {
+              'content-type': 'multipart/form-data'
+            },
+            name: 'upload',
+            success: function (result) {
+              debugger
+              wx.hideLoading();
+              let res = JSON.parse(result.data);
+              console.log(result);
+              if (result.code == 1) {
+                let photoUrl = app.globalData.api + result.photoPath;
+                console.log(photoUrl);
+                that.setData({
+                  files: that.data.files.concat(photoUrl)
+                });
+              } else {
+                resource.notishi("网络异常，请稍后再试");
+              }
+            },
+            fail: function (res) {
+              wx.hideLoading()
+              wx.showToast({
+                title: '上传失败，请重新上传',
+                icon: 'none',
+                duration: 2000
+              })
+            },
+          })
+        }
+      }
     })
   }
 })

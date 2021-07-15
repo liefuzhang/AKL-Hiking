@@ -127,3 +127,12 @@ image {
   justify-content: center;
   align-items: center;
 }
+
+.btn-edit {
+  margin: 10px 0;
+}
+
+.admin-btns {
+  display: flex;
+  justify-content: space-between;
+}

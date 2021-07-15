@@ -2,7 +2,7 @@
 const CONFIG = require('config.js');
 
 App({
-  onLaunch: function (options) {    
+  onLaunch: function (options) {
     var _this = this;
     wx.login({
       success: res => {
@@ -19,6 +19,10 @@ App({
             console.log(result)
             _this.globalData.openid = result.data.openid;
             _this.globalData.userRegistered = result.data.userRegistered;
+
+            if (_this.globalData.userRegistered) {
+              _this.login();
+            }
           }
         });
       }
@@ -38,10 +42,24 @@ App({
     openid: '',
     userid: '',
     avatarUrl: '',
-    sessionKey:'',
+    sessionKey: '',
     membershipId: '',
     hikerId: null,
     isAdmin: false,
     userRegistered: false
+  },
+
+  login: function () {
+    var _this = this;
+    wx.request({
+      url: `${_this.globalData.apiUrl}account/login?openid=${_this.globalData.openid}`,
+      method: 'POST',
+      success(result) {
+        _this.globalData.membershipId = result.data.membershipId;
+        _this.globalData.hikerId = result.data.id;
+        _this.globalData.avatarUrl = result.data.avatarUrl;
+        _this.globalData.isAdmin = result.data.isAdmin;
+      }
+    })
   }
 })

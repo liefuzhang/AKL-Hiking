@@ -47,6 +47,11 @@
       </view>
     </block>
   </view>
+
+  <view class="admin-btns" wx:if="{{isAdmin}}">
+    <button class="btn-edit" type="primary" bindtap='onEditActivity'>修改活动</button>
+    <button class="btn-edit" type="primary" bindtap='onDeleteActivity'>删除活动</button>
+  </view>
 </view>
 
 <view class="footer">

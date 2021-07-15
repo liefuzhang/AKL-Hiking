@@ -1,13 +1,17 @@
 <view class='page__bd'>
   <form>
+    <view class="head-photo" bindtap="onChooseImage">
+      <view class="iconfont icon-plus"></view>添加封面图片
+    </view>
+
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">活动主题</view>
+        <view class="weui-label">活动名</view>
       </view>
 
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{subject}}" bindinput="inputSubject" placeholder="请输入活动主题" class='weui-input' />
+          <input value="{{name}}" bindinput="inputName" placeholder="请输入活动名" class='weui-input' />
         </view>
       </view>
     </view>
@@ -31,35 +35,13 @@
 
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">结束时间</view>
-      </view>
-      <view class="weui-cell__bd">
-        <picker mode="date" value="{{endDate}}" bindchange="endDateChange">
-          <view class="weui-input">{{endDate}} </view>
-        </picker>
+        <view class="weui-label">活动时长</view>
       </view>
 
       <view class="weui-cell__bd">
-        <picker mode="time" value="{{endTime}}" bindchange="endTimeChange">
-          <view class="weui-input">{{endTime}}</view>
-        </picker>
-      </view>
-    </view>
-
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">报名截止时间</view>
-      </view>
-
-      <view class="weui-cell__bd">
-        <picker mode="date" value="{{closeDate}}" bindchange="closeDateChange">
-          <view class="weui-input">{{closeDate}}</view>
-        </picker>
-      </view>
-      <view class="weui-cell__bd">
-        <picker mode="time" value="{{closeTime}}" bindchange="closeTimeChange">
-          <view class="weui-input">{{closeTime}}</view>
-        </picker>
+        <view class="weui-input">
+          <input value="{{duration}}" bindinput="inputDuration" placeholder="请输入活动时长" class='weui-input' />
+        </view>
       </view>
     </view>
 
@@ -69,7 +51,7 @@
       </view>
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{address}}" bindinput="inputAddress" placeholder="请输入地点" class='weui-input' />
+          <input value="{{location}}" bindinput="inputLocation" placeholder="请输入地点" class='weui-input' />
         </view>
       </view>
     </view>
@@ -80,27 +62,17 @@
       </view>
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{people}}" bindinput="inputPeople" placeholder="请输入活动的人数" class='weui-input' type='number'  pattern="\d*" />
+          <input value="{{countLimit}}" bindinput="inputCountLimit" placeholder="请输入活动的人数" class='weui-input'
+            type='number' pattern="\d*" />
         </view>
       </view>
     </view>
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">负责人电话</view>
-      </view>
-      <view class="weui-cell__bd">
-        <view class="weui-input">
-          <input value="{{tel}}" bindinput="inputTel" placeholder="请输入负责人电话" class='weui-input' />
-        </view>
-      </view>
-    </view>
-    
-    <view class="weui-cells__title">活动介绍</view>
+    <view class="weui-cells__title">活动说明</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
-        <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 3.3em" value='{{remark}}' bindinput="inputRemark" />
-        <view class="weui-textarea-counter">0/200</view>
+        <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 3.3em" value='{{description}}'
+          bindinput="inputDescription" />
       </view>
     </view>
 

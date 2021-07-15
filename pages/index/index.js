@@ -17,7 +17,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {    
+  onLoad: function (options) {
+    app.globalData.activityId = null;
+
+    wx.showShareMenu({
+      withShareTicket: true
+    });
+  },
+
+  onShow: function () {
+    this.getAllActivities();
+  },
+  onPullDownRefresh: function () {
+    this.getAllActivities();
+  },
+  getAllActivities: function () {
     let _this = this;
 
     wx.request({
@@ -30,10 +44,6 @@ Page({
         });
         console.log(res.data);
       }
-    });
-
-    wx.showShareMenu({
-      withShareTicket: true
     });
   },
 
