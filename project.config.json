@@ -54,18 +54,6 @@
     "miniprogram": {
       "list": [
         {
-          "id": 0,
-          "name": "测试转发",
-          "pathName": "pages/user/index",
-          "query": "",
-          "scene": "1044",
-          "shareInfo": {
-            "groupName": "测试模拟群5",
-            "shareName": "yUXFjb7P4F3aYY8ETB8xxA6iDiy-B7Hlo3FrlxHOKH8@cr4dev",
-            "shareKey": "tZCBSe0hhnp9r1QOWV-NtMeD5IzJKi49q4KXOt5lkQ_OHfGx72866JvG9HUQas38oEZmiVZDB_piHrhzQiCtcw~~"
-          }
-        },
-        {
           "id": 1,
           "name": "首页",
           "pathName": "pages/index/index",
@@ -99,18 +87,6 @@
             "groupName": "测试模拟群3",
             "shareName": "yUXFjb7P4F3aYY8ETB8xxGfFFuo2mZvhVA12TyvaNcc@cr4dev",
             "shareKey": "m2EB3oMJNCFGHY4U8LfD2QAUplrnV_DjkKaf5mZrcN18JW7D8P8p-ki30oI179vpXhoz5efZHfV-YNxe9Dwg_g~~"
-          }
-        },
-        {
-          "id": -1,
-          "name": "我的",
-          "pathName": "pages/user/index",
-          "query": "id=12345678",
-          "scene": "1044",
-          "shareInfo": {
-            "groupName": "测试模拟群2",
-            "shareName": "yUXFjb7P4F3aYY8ETB8xxOkV4XtV8cm2YJyo60fWN3I@cr4dev",
-            "shareKey": "3xoCsbhE6-C6A_5cWrEf-SYsT6weOUwtFTAFxoEB9Y1-cioHsNmsOaLCNLUvBIH7C1UzRw7HCV_kr3yHgl22Sw~~"
           }
         }
       ]

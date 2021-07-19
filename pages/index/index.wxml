@@ -5,10 +5,15 @@
   </block>
   <block wx:else>
     <view class='activity-item' wx:for="{{activities}}" data-id="{{item.id}}" bindtap="viewActivity">
-      <view>{{item.name}}</view>
-      <view>地点：{{item.location}}</view>
-      <view>日期：{{item.date}}</view>
-      <view>报名人数：{{item.hikerCount}}/{{item.countLimit}}</view>
+      <view wx:if="{{item.isExpired}}" class="expired-text">已结束</view>
+      <view class="activity-item-text">
+        <view style="color: #795548">{{item.year}}年{{item.month}}月{{item.day}}日，{{item.dayOfWeekString}}</view>
+        <view style="color: #222; font-size: 16px; font-weight: 600; margin-bottom: 12px;">{{item.name}}</view>
+        <view style="color: #999; font-size: 12px; margin-top: auto;">{{item.hikerCount}}人已报名</view>
+      </view>
+      <view class="activity-item-photo">
+        <image src="{{item.headPhotoPath}}" mode="aspectFill"></image>
+      </view>
     </view>
   </block>
 

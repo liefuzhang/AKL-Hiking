@@ -1,29 +1,10 @@
- .kefu{
-  background-image: url(../../../assets/ico_kefu.png) no-repeat;
-  width: 300rpx;
-  height: 99rpx;
-} 
+@import "../../assets/iconfont/iconfont.wxss";
 
-.artivity-list{
-  padding: 10rpx;
+.page {
+  padding: 20px;
 }
 
-.artivity-list .item-list{
-  padding-bottom: 10rpx;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10rpx;
-}
-
-.artivity-list .item-list .more{
+.icon-hammer {
   display: inline-block;
-  color: red;    
-}
-
-.no-activity{
-  margin-top: 250rpx;
-  text-align: center;
-}
-
-.publish{
-  margin-top: 50px;
+  font-size: 24px;
 }

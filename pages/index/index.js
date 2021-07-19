@@ -56,31 +56,13 @@ Page({
     console.log('分享结果：', res)
     // }
     return {
-      // 我报名今晚的羽毛球活动，就差你了！
-      title: '浪子神剑 邀请你来打羽毛球(2月2日,晚上20：00-22：00),目前已报3人，活动火热报名中……',
-      path: '/pages/activity/detail?id=5a812c54b54ca0101a9c2040',
-      imageUrl: '/assets/baoming.jpg',
-      success: function (res) {
-        // 转发成功
-        console.log('成功', res);
-        // 获取分享到的信息
-        wx.getShareInfo({
-          shareTicket: res.shareTickets[0],
-          success: function (result) {
-            console.log(result)
-          }
-        })
-
-      },
-      fail: function (res) {
-        // 转发失败
-        console.log('失败');
-      }
+      title: '邀请你参加AKL活动',
+      path: '/pages/index/index',
+      imageUrl: 'https://raw.githubusercontent.com/liefuzhang/AKL-Hiking/master/assets/Sky-tower.jpg'
     }
   },
 
   viewActivity: function (event) {
-    console.log(event.currentTarget.dataset.id);
     wx.navigateTo({
       url: '/pages/activity/detail?id=' + event.currentTarget.dataset.id
     })

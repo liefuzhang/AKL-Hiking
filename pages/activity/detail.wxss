@@ -2,9 +2,10 @@
 
 .pages {
   margin-bottom: 40px;
-  padding: 30rpx 50rpx;
+  padding: 30rpx 50rpx 60rpx;
   position: relative;
   min-height: 100vh;
+
 }
 
 .pages::after {
@@ -27,6 +28,19 @@
   margin: 8px 0;
 }
 
+.name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.head-photo image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
 .userinfo-avatar {
   width: 108rpx;
   height: 108rpx;
@@ -45,6 +59,7 @@
   flex-direction: column;
   max-width: 25%;
   width: 25%;
+  align-items: center;
 }
 
 .hiker-name {
@@ -52,6 +67,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-align: center;
+  max-width: 100%;
 }
 
 .weui-btn {
@@ -88,11 +104,15 @@
   margin: 15px 0;
 }
 
-.artivity-list {
-  height: 32px;
-  line-height: 32px;
+.activity-list-item {
+  line-height: 24px;
   vertical-align: middle;
   margin: 10px 0;
+}
+
+.iconfont {
+  margin-right: 10px;
+  display: inline-block;
 }
 
 image {
@@ -101,24 +121,27 @@ image {
   vertical-align: middle;
 }
 
-.artivity-list image {
-  margin-right: 20px;
+.activity-list-item image {
+  margin-right: 10px;
 }
 
 .footer {
-  background-color: #cccccc;
-  border-radius: 15px 15px 0 0;
+  background-color: #dddddd;
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
+  align-items: center;
   font-size: 13px;
-  padding: 5px 10px;
+  padding: 8px 5px;
+  margin: 0 -5px;
+  box-shadow: 0 10px 20px 0 rgb(0 0 0 / 50%), 0 6px 22px 0 rgb(0 0 0 / 50%);
 }
 
 .btn-enroll {
   border-radius: 10px;
-  margin-right: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .footer-item {
@@ -126,6 +149,23 @@ image {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 14px;
+  margin-left: auto;
+  position: relative;
+}
+
+.footer-item-text {
+  font-size: 11px;
+}
+
+.footer-item .iconfont {
+  margin-right: 0;
+}
+
+.footer-text {
+  font-size: 14px;
+  padding-left: 10px;
+  width: 30%;
 }
 
 .btn-edit {
@@ -135,4 +175,28 @@ image {
 .admin-btns {
   display: flex;
   justify-content: space-between;
+}
+
+.help-enroll-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-plus {
+  position: relative;
+  bottom: 2px;
+  font-size: 19px;
+  margin-left: 3px;
+}
+
+.icon-minus {
+  margin-right: 3px;
+}
+
+.share-button {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 23px;
+  height: 23px;
 }

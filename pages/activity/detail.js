@@ -12,16 +12,15 @@ Page({
     name: '',
     date: new Date(),
     startTime: '',
-    endTime: '',
     location: '',
     description: '',
     hikerList: [],
     waitingList: [],
-    openGId: '',
     alreadyEnrolled: false,
     loaded: false,
     canIUseGetUserProfile: false,
-    isAdmin: false
+    isAdmin: false,
+    helpEnrollCount: 0
   },
 
   /**
@@ -114,43 +113,9 @@ Page({
 
     return {
       // 我报名今晚的羽毛球活动，就差你了！
-      title: `浪子神剑 邀请你来打羽毛球！`,
-      path: '/pages/activity/detail?id=' + this.data._id,
-      // imageUrl: '/assets/baoming.jpg',
-      success: function (res) {
-        // 转发成功
-        console.log('成功', res);
-        // 获取分享到的信息
-        if (res.shareTickets) {
-          wx.getShareInfo({
-            shareTicket: res.shareTickets[0],
-            success: function (result) {
-              console.log(result);
-              let sessionKey = '';
-
-              wx.request({
-                url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=jiemi`,
-                method: 'POST',
-                data: {
-                  sessionKey: sessionKey,
-                  iv: result.iv,
-                  encryptedData: result.encryptedData,
-                },
-                success(result) {
-                  console.log('解密的结果：', result.data.data.openGId);
-                  _this.setData({
-                    openGId: result.data.data.openGId
-                  });
-                }
-              });
-            }
-          })
-        }
-      },
-      fail: function (res) {
-        // 转发失败
-        console.log('失败');
-      }
+      title: '邀请你参加AKL活动',
+      path: '/pages/activity/detail?id=' + this.data.activity.id,
+      imageUrl: 'https://raw.githubusercontent.com/liefuzhang/AKL-Hiking/master/assets/Sky-tower.jpg'
     }
   },
 
@@ -167,6 +132,30 @@ Page({
     }
   },
 
+  onHelpEnrollPlus: function () {
+    this.data.helpEnrollCount += 1;
+    this.helpEnrollForActivity();
+  },
+  onHelpEnrollMinus: function () {
+    this.data.helpEnrollCount -= 1;
+    this.helpEnrollForActivity();
+  },
+  helpEnrollForActivity: function () {
+    var _this = this;
+    wx.request({
+      url: `${app.globalData.apiUrl}activity/helpEnroll`,
+      data: {
+        hikerId: app.globalData.hikerId,
+        activityId: _this.data.activity.id,
+        helpEnrollCount: _this.data.helpEnrollCount
+      },
+      method: 'POST',
+      success: function () {
+        _this.getEnrollData(_this.data.activity.id);
+      }
+    });
+  },
+
   enrollForActivity: function () {
     var _this = this;
     wx.request({
@@ -177,34 +166,33 @@ Page({
       },
       method: 'POST',
       success(result) {
-        console.log("报名成功！")
-        wx.showModal({
-          title: '报名成功！',
-          showCancel: false,
-          content: "报名成功了，分享到群里让更多小伙伴来参与吧！",
-          success: function (res) {
-            if (res.confirm) {
-              _this.getEnrollData(_this.data.activity.id);
-            }
-          }
-        })
+        _this.getEnrollData(_this.data.activity.id);
       }
     });
   },
 
   onCancelEnrollment: function () {
     let _this = this;
-    wx.request({
-      url: `${app.globalData.apiUrl}activity/cancelEnrollment`,
-      data: {
-        hikerId: app.globalData.hikerId,
-        activityId: _this.data.activity.id
-      },
-      method: 'POST',
-      success(result) {
-        _this.getEnrollData(_this.data.activity.id);
+    wx.showModal({
+      title: '确定取消',
+      showCancel: true,
+      content: "确定取消报名?",
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: `${app.globalData.apiUrl}activity/cancelEnrollment`,
+            data: {
+              hikerId: app.globalData.hikerId,
+              activityId: _this.data.activity.id
+            },
+            method: 'POST',
+            success(result) {
+              _this.getEnrollData(_this.data.activity.id);
+            }
+          });
+        }
       }
-    });
+    })
   },
 
   getEnrollData(id) {
@@ -217,9 +205,10 @@ Page({
         let activity = res.data;
         _this.setData({
           activity: activity,
-          hikerList: activity.hikers.slice(0, activity.countLimit),
-          waitingList: activity.hikers.slice(activity.countLimit),
+          hikerList: activity.hikers.slice(0, activity.waitingListIndex + 1),
+          waitingList: activity.hikers.slice(activity.waitingListIndex + 1),
           alreadyEnrolled: activity.hikers && activity.hikers.some(h => h.id === app.globalData.hikerId),
+          helpEnrollCount: activity.hikers && activity.hikers.some(h => h.id === app.globalData.hikerId) && activity.hikers.filter(h => h.id === app.globalData.hikerId)[0].helpEnrollCount,
           loaded: true
         });
       }
@@ -264,7 +253,7 @@ Page({
   },
 
   onDeleteActivity: function () {
-    var _this= this;
+    var _this = this;
     wx.showModal({
       title: '确定删除活动',
       showCancel: true,
@@ -313,5 +302,12 @@ Page({
         callback();
       }
     })
+  },
+
+  copyToClipboard: function (event) {
+    var _this = this;
+    wx.setClipboardData({
+      data: event.currentTarget.dataset.text
+    });
   }
 })

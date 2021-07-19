@@ -6,17 +6,26 @@ const app = getApp()
 Page({
   data: {
     id: '',
+    type: 0,
     name: '',
     startDate: util.formatTime(new Date, 1),
     startTime: util.formatTime(new Date, 2),
     duration: '',
     location: '',
     countLimit: '',
+    level: '',
     description: '',
-    files: []
+    files: [],
+    headPhotoPath: '',
+    types: ['徒步', '羽毛球', '其他'],
+    isAdmin: false
   },
   //事件处理函数
-  onLoad: function () {
+  onShow: function () {
+    this.setData({
+      isAdmin: app.globalData.isAdmin
+    })
+    
     let id = app.globalData.activityId || '';
     this.setData({
       id: id
@@ -31,68 +40,38 @@ Page({
           let activity = res.data;
           _this.setData({
             name: activity.name,
+            type: activity.type,
             description: activity.description,
             location: activity.location,
             startDate: activity.dateString,
             startTime: activity.timeString,
-            countLimit: activity.countLimit
+            countLimit: activity.countLimit,
+            level: activity.level,
+            duration: activity.duration,
+            headPhotoPath: activity.headPhotoPath
           });
         }
       });
     }
-
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
   },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-
   /**
    * 发布活动
    */
   publish: function () {
     let id = this.data.id;
     let modelTitle = '活动发布成功';
-    debugger
     let obj = {
       id: this.data.id || 0,
       createdByHikerId: app.globalData.hikerId,
       name: this.data.name,
+      type: +this.data.type,
       startDateTime: new Date(`${this.data.startDate} ${this.data.startTime}`),
       duration: this.data.duration,
       location: this.data.location,
-      countLimit: this.data.countLimit || 0,
-      description: this.data.description
+      level: this.data.level,
+      countLimit: +this.data.countLimit || 0,
+      description: this.data.description,
+      headPhotoPath: this.data.headPhotoPath
     }
 
     wx.request({
@@ -102,13 +81,13 @@ Page({
       success(result) {
         app.globalData.activityId = '';
         if (id !== '') {
-          modelTitle = '活动修改成功';
+          modelTitle = '修改成功';
         }
 
         wx.showModal({
           title: modelTitle,
           showCancel: false,
-          content: "活动已成功发布，您可转发到群里，约他们一起打球吧！",
+          content: "活动已成功修改",
           success: function (res) {
             if (res.confirm) {
               wx.switchTab({
@@ -140,6 +119,12 @@ Page({
     })
   },
 
+  bindTypeChange: function(e) {
+    this.setData({
+      type: e.detail.value
+    })
+  },
+
   inputName(e) {
     this.setData({
       name: e.detail.value
@@ -164,6 +149,12 @@ Page({
     })
   },
 
+  inputLevel(e) {
+    this.setData({
+      level: e.detail.value
+    })
+  },
+
   inputDescription(e) {
     this.setData({
       description: e.detail.value
@@ -182,7 +173,7 @@ Page({
         })
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        
+
         for (var i = 0; i < tempFilePaths.length; i++) {
           console.log('图片地址名称' + tempFilePaths[i]);
           wx.uploadFile({
@@ -193,18 +184,18 @@ Page({
             },
             name: 'upload',
             success: function (result) {
-              debugger
               wx.hideLoading();
-              let res = JSON.parse(result.data);
-              console.log(result);
-              if (result.code == 1) {
-                let photoUrl = app.globalData.api + result.photoPath;
-                console.log(photoUrl);
-                that.setData({
-                  files: that.data.files.concat(photoUrl)
+              let savedPhotoName = result.data;
+              if (result.statusCode == 200) {
+                _this.setData({
+                  headPhotoPath: `${app.globalData.apiUrl}photos/${savedPhotoName}`
                 });
               } else {
-                resource.notishi("网络异常，请稍后再试");
+                wx.showToast({
+                  title: '上传失败，请重新上传',
+                  icon: 'none',
+                  duration: 2000
+                });
               }
             },
             fail: function (res) {

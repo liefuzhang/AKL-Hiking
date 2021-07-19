@@ -1,7 +1,28 @@
-<view class='page__bd'>
+<view wx:if="{{isAdmin}}" class='page__bd'>
   <form>
     <view class="head-photo" bindtap="onChooseImage">
-      <view class="iconfont icon-plus"></view>添加封面图片
+      <view class="add-head-photo" wx:if="{{!headPhotoPath}}">
+        <view class="iconfont icon-plus"></view>添加封面图片
+      </view>
+      <view wx:else>
+        <image src="{{headPhotoPath}}" mode="aspectFill"></image>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">活动类型</view>
+      </view>
+
+      <view class="weui-cell__bd">
+        <view class="weui-input">
+          <picker bindchange="bindTypeChange" value="{{type}}" range="{{types}}">
+            <view class="picker">
+              请选择：{{types[type]}}
+            </view>
+          </picker>
+        </view>
+      </view>
     </view>
 
     <view class="weui-cell weui-cell_input">
@@ -47,7 +68,7 @@
 
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">活动地点</view>
+        <view class="weui-label">地点</view>
       </view>
       <view class="weui-cell__bd">
         <view class="weui-input">
@@ -56,13 +77,24 @@
       </view>
     </view>
 
-    <view class="weui-cell weui-cell_input">
+    <view wx:if="{{type==0}}" class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">活动人数</view>
+        <view class="weui-label">步道难度</view>
       </view>
       <view class="weui-cell__bd">
         <view class="weui-input">
-          <input value="{{countLimit}}" bindinput="inputCountLimit" placeholder="请输入活动的人数" class='weui-input'
+          <input value="{{level}}" bindinput="inputLevel" placeholder="请输入步道难度" class='weui-input' />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">总人数</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="weui-input">
+          <input value="{{countLimit}}" bindinput="inputCountLimit" placeholder="请输入总人数" class='weui-input'
             type='number' pattern="\d*" />
         </view>
       </view>
@@ -81,4 +113,6 @@
       <button class="weui-btn publish" type="primary" bindtap="publish" wx:else>发布活动</button>
     </view>
   </form>
+</view>
+<view wx:else style="padding: 20px;">目前只有Admin才能发布活动<view class="iconfont icon-admin" style="font-size:24px; display: inline"></view>
 </view>

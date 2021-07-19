@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 2671833 */
-  src: url('//at.alicdn.com/t/font_2671833_2s4y7np0zw6.woff2?t=1626345915478') format('woff2'),
-       url('//at.alicdn.com/t/font_2671833_2s4y7np0zw6.woff?t=1626345915478') format('woff'),
-       url('//at.alicdn.com/t/font_2671833_2s4y7np0zw6.ttf?t=1626345915478') format('truetype');
+  src: url('//at.alicdn.com/t/font_2671833_3lr4699vpq3.woff2?t=1626697583106') format('woff2'),
+       url('//at.alicdn.com/t/font_2671833_3lr4699vpq3.woff?t=1626697583106') format('woff'),
+       url('//at.alicdn.com/t/font_2671833_3lr4699vpq3.ttf?t=1626697583106') format('truetype');
 }
 .iconfont{
   font-family: 'iconfont';
-  color: #333;
+  color: #111;
   font-size: 20px;
 }
 
@@ -20,4 +20,55 @@
 
 .icon-plus::before{
   content: '\e653';
+}
+
+.icon-level::before{
+  content: '\e649';
+}
+
+.icon-copy::before{
+  content: '\e86a';
+  color: #333;
+  margin-left: 3px;
+  font-size: 1.1rem;
+}
+
+.icon-clock::before{
+  content: '\e6ad';
+}
+
+.icon-people::before{
+  content: '\e601';
+}
+
+.icon-calendar::before{
+  content: '\e6e0';
+}
+
+.icon-location::before{
+  content: '\e67b';
+}
+
+.icon-note::before{
+  content: '\e627';
+}
+.icon-share::before{
+  content: '\e632';
+}
+.icon-add-people::before{
+  content: '\e6b7';
+}
+.icon-minus::before{
+  content: '\e906';
+}
+.icon-plus::before{
+  content: '\e610';
+}
+
+.icon-hammer::before{
+  content:'\e6a7';
+}
+
+.icon-admin::before{
+  content:'\e788';
 }

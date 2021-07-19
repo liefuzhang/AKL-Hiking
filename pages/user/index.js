@@ -10,33 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabs: ["我参加的活动", "我发布的活动"],
-    activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
-    activeLists: [],
-    myAactiveLists: [],
-    userid: ''
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
-    let _this = this;
-
-    wx.getSystemInfo({
-      success: function (res) {
-        _this.setData({
-          sliderLeft: (res.windowWidth / _this.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / _this.data.tabs.length * _this.data.activeIndex
-        });
-      }
-    });
-
-    this.getActivity();
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -48,9 +28,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.getActivity();
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -78,47 +56,5 @@ Page({
    */
   onReachBottom: function () {
 
-  },
-
-  tabClick: function (e) {
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
-    });
-  },
-
-  publish: function(){
-    wx.switchTab({
-      url: '/pages/activity/index'
-    });
-  },
-
-  // 获取活动信息
-  getActivity: function(){
-    let _this = this;
-
-    // 获取参加的活动数据
-    wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=enrollList&userid=${_this.data.userid}`,
-      method: 'GET',
-      success(result) {
-        _this.setData({
-          'activeLists': result.data
-        });
-        console.log(result.data);
-      }
-    });
-
-    // 获取发布的数据
-    wx.request({
-      url: `${app.globalData.apiUrl}?mod=api&ctr=weixin&act=activityList&userid=${_this.data.userid}`,
-      method: 'GET',
-      success(result) {
-        _this.setData({
-          'myAactiveLists': result.data
-        });
-        console.log(result.data);
-      }
-    });
   }
 })
