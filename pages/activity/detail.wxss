@@ -4,21 +4,11 @@
   margin-bottom: 40px;
   padding: 30rpx 50rpx 60rpx;
   position: relative;
-  min-height: 100vh;
-
 }
 
-.pages::after {
-  content: "";
-  background-size: cover;
-  background-color: #dddddd;
-  opacity: 0.8;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
+button[disabled][type=primary] {
+  background-color: #999999;
+  color: white;
 }
 
 .divLine {
@@ -29,9 +19,10 @@
 }
 
 .name {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 600;
   color: #333;
+  display: inline;
 }
 
 .head-photo image {
@@ -68,6 +59,11 @@
   white-space: nowrap;
   text-align: center;
   max-width: 100%;
+}
+
+.move-down {
+  position: relative;
+  top: 2px;
 }
 
 .weui-btn {
@@ -149,13 +145,13 @@ image {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 14px;
+  margin-right: 20px;
   margin-left: auto;
   position: relative;
 }
 
 .footer-item-text {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .footer-item .iconfont {
@@ -163,8 +159,8 @@ image {
 }
 
 .footer-text {
-  font-size: 14px;
-  padding-left: 10px;
+  font-size: 16px;
+  padding-left: 16px;
   width: 30%;
 }
 
@@ -186,11 +182,11 @@ image {
   position: relative;
   bottom: 2px;
   font-size: 19px;
-  margin-left: 3px;
+  margin-left: 6px;
 }
 
 .icon-minus {
-  margin-right: 3px;
+  margin-right: 6px !important;
 }
 
 .share-button {
@@ -199,4 +195,5 @@ image {
   top: 0;
   width: 23px;
   height: 23px;
+  padding: 0;
 }

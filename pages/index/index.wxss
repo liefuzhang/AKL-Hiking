@@ -29,6 +29,7 @@
 
 .activity-list {
   padding: 20rpx;
+  padding-top: 30rpx;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

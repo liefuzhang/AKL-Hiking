@@ -3,32 +3,32 @@
     <image src="{{activity.headPhotoPath}}" mode="aspectFill"></image>
   </view>
 
-  <view class="name">
-    {{activity.name}}<view class="iconfont icon-copy" data-text="{{activity.name}}" bindtap="copyToClipboard"></view>
+  <view>
+    <view class="name">{{activity.name}}</view><view class="iconfont icon-copy" data-text="{{activity.name}}" bindtap="copyToClipboard"></view>
   </view>
 
   <view class="divLine"></view>
 
   <view class="activity-list-item">
-    <view class="iconfont icon-calendar"></view>
+    <view class="iconfont icon-calendar move-down"></view>
     {{activity.year}}年{{activity.month}}月{{activity.day}}日（{{activity.dayOfWeekString}}），{{activity.readableTimeString}}
   </view>
 
   <view class="activity-list-item">
-    <view class="iconfont icon-location"></view>{{activity.isHiking?'出发地点：':''}}{{activity.location}}<view
+    <view class="iconfont icon-location move-down"></view>{{activity.isHiking?'出发地点：':''}}{{activity.location}}<view
       class="iconfont icon-copy" data-text="{{activity.location}}" bindtap="copyToClipboard"></view>
   </view>
 
   <view class="activity-list-item">
-    <view class="iconfont icon-clock"></view>时长：{{activity.duration}}
+    <view class="iconfont icon-clock move-down"></view>时长：{{activity.duration}}
   </view>
 
   <view wx:if="{{activity.isHiking}}" class="activity-list-item">
-    <view class="iconfont icon-level"></view>步道难度：{{activity.level}}
+    <view class="iconfont icon-level move-down"></view>步道难度：{{activity.level}}
   </view>
 
-  <view wx:if="{{activity.description}}" class="activity-list-item">
-    <view class="iconfont icon-note"></view>{{activity.description}}
+  <view wx:if="{{activity.description}}" class="activity-list-item" style="display: flex;">
+    <view class="iconfont icon-note"></view><view style="white-space: pre;">{{activity.description}}</view>
   </view>
 
   <view class="divLine"></view>
@@ -74,7 +74,7 @@
     <button class="btn-enroll" type="primary" bindtap='onCancelEnrollment'>取消报名</button>
   </block>
   <block wx:elif="{{loaded}}">
-    <button class="btn-enroll" type="primary" bindtap='onEnroll'>现在报名</button>
+    <button class="btn-enroll" type="primary" bindtap='onEnroll' disabled="{{activity.isExpired}}">现在报名</button>
   </block>
   <view wx:if="{{alreadyEnrolled && helpEnrollCount == 0}}" class="footer-item" bindtap='onHelpEnrollPlus'>
     <view class="iconfont icon-add-people"></view>

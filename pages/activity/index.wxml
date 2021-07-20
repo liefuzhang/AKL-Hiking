@@ -103,7 +103,7 @@
     <view class="weui-cells__title">活动说明</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
-        <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 3.3em" value='{{description}}'
+        <textarea class="weui-textarea" placeholder="请输入活动说明" style="height: 6.3em" value='{{description}}'
           bindinput="inputDescription" />
       </view>
     </view>

@@ -25,7 +25,7 @@ Page({
     this.setData({
       isAdmin: app.globalData.isAdmin
     })
-    
+
     let id = app.globalData.activityId || '';
     this.setData({
       id: id
@@ -52,6 +52,20 @@ Page({
           });
         }
       });
+    } else {
+      this.setData({
+        type: 0,
+        name: '',
+        startDate: util.formatTime(new Date, 1),
+        startTime: util.formatTime(new Date, 2),
+        duration: '',
+        location: '',
+        countLimit: '',
+        level: '',
+        description: '',
+        files: [],
+        headPhotoPath: ''
+      })
     }
   },
   /**
@@ -119,7 +133,7 @@ Page({
     })
   },
 
-  bindTypeChange: function(e) {
+  bindTypeChange: function (e) {
     this.setData({
       type: e.detail.value
     })
