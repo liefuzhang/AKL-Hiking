@@ -133,6 +133,14 @@ Page({
   },
 
   onHelpEnrollPlus: function () {
+    if (this.data.helpEnrollCount == 6) {
+      wx.showToast({
+        title: '最多帮6位朋友报名',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
     this.data.helpEnrollCount += 1;
     this.helpEnrollForActivity();
   },
