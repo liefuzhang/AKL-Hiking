@@ -10,8 +10,7 @@
   <view class="divLine"></view>
 
   <view class="activity-list-item">
-    <view class="iconfont icon-calendar move-down"></view>
-    {{activity.year}}年{{activity.month}}月{{activity.day}}日（{{activity.dayOfWeekString}}），{{activity.readableTimeString}}
+    <view class="iconfont icon-calendar move-down"></view>{{activity.year}}年{{activity.month}}月{{activity.day}}日（{{activity.dayOfWeekString}}），{{activity.readableTimeString}}
   </view>
 
   <view class="activity-list-item">
@@ -57,11 +56,6 @@
         </view>
       </view>
     </block>
-  </view>
-
-  <view class="admin-btns" wx:if="{{isAdmin}}">
-    <button class="btn-edit" type="primary" bindtap='onEditActivity'>修改活动</button>
-    <button class="btn-edit" type="primary" bindtap='onDeleteActivity'>删除活动</button>
   </view>
 </view>
 

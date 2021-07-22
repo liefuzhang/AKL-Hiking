@@ -29,9 +29,9 @@ Page({
     this.getAllActivities();
   },
   onPullDownRefresh: function () {
-    this.getAllActivities();
+    this.getAllActivities(wx.stopPullDownRefresh);
   },
-  getAllActivities: function () {
+  getAllActivities: function (callback) {
     let _this = this;
 
     wx.request({
@@ -42,7 +42,8 @@ Page({
           activities: res.data,
           loaded: true
         });
-        console.log(res.data);
+        if (callback)
+          callback();
       }
     });
   },

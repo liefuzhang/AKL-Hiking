@@ -145,7 +145,7 @@ image {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 20rpx;
   margin-left: auto;
   position: relative;
 }
@@ -193,7 +193,7 @@ image {
   opacity: 0;
   position: absolute;
   top: 0;
-  width: 23px;
-  height: 23px;
+  width: 30px;
+  height: 30px;
   padding: 0;
 }

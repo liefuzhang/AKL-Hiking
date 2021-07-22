@@ -82,7 +82,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getEnrollData(this.data.activity.id);
+    this.getEnrollData(this.data.activity.id, wx.stopPullDownRefresh);
   },
 
   /**
@@ -102,25 +102,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log('来自按钮的分享');
-    }
-
-    let _this = this;
-
-    console.log('分享结果：', res);
-
     return {
-      // 我报名今晚的羽毛球活动，就差你了！
       title: '邀请你参加AKL活动',
       path: '/pages/activity/detail?id=' + this.data.activity.id,
       imageUrl: 'https://raw.githubusercontent.com/liefuzhang/AKL-Hiking/master/assets/Sky-tower.jpg'
     }
-  },
-
-  getDeatilInfo: function () {
-
   },
 
   // 我要报名
@@ -203,7 +189,7 @@ Page({
     })
   },
 
-  getEnrollData(id) {
+  getEnrollData(id, callback) {
     let _this = this;
 
     wx.request({
@@ -219,67 +205,10 @@ Page({
           helpEnrollCount: activity.hikers && activity.hikers.some(h => h.id === app.globalData.hikerId) && activity.hikers.filter(h => h.id === app.globalData.hikerId)[0].helpEnrollCount,
           loaded: true
         });
+        if (callback)
+          callback();
       }
     });
-  },
-
-  // 修改活动
-  onManageActivity: function () {
-    let _this = this;
-
-    wx.showActionSheet({
-      itemList: ['修改活动', '取消活动', '复制活动', '删除活动'],
-      // itemColor: 'red',
-      success: function (res) {
-        switch (res.tapIndex) {
-          case 0:
-            _this.onEditActivity();
-            break;
-          case 1:
-            break;
-          case 2:
-            break;
-          case 3:
-            break;
-          default:
-            break;
-        }
-        console.log(res.tapIndex)
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
-  },
-
-  onEditActivity: function () {
-    app.globalData.activityId = this.data.activity.id;
-
-    wx.switchTab({
-      url: '/pages/activity/index'
-    });
-  },
-
-  onDeleteActivity: function () {
-    var _this = this;
-    wx.showModal({
-      title: '确定删除活动',
-      showCancel: true,
-      content: "确定删除这个活动?",
-      success: function (res) {
-        if (res.confirm) {
-          wx.request({
-            url: `${app.globalData.apiUrl}activity/${_this.data.activity.id}`,
-            method: 'DELETE',
-            success(result) {
-              wx.switchTab({
-                url: '/pages/index/index'
-              });
-            }
-          })
-        }
-      }
-    })
   },
 
   getUserProfile(callback) {
